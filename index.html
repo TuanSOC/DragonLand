@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đảo Rồng 3D</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐉</text></svg>" />
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <div id="hud">
+      <div class="stat level" title="Cấp người chơi"><span>⭐</span><b id="plevel">1</b><div class="xpbar"><div id="xpfill"></div></div></div>
+      <div class="stat"><span>💰</span><b id="gold">0</b></div>
+      <div class="stat"><span>💎</span><b id="gems">0</b></div>
+      <div class="stat"><span>🍖</span><b id="food">0</b></div>
+      <div class="stat"><span>🐉</span><b id="dragons">0</b></div>
+      <div class="stat"><span>🏆</span><b id="arena">0</b></div>
+    </div>
+
+    <div id="menu">
+      <button id="btn-collect" title="Thu vàng tất cả chuồng">💰<span>Thu hết</span></button>
+      <button id="btn-build" title="Xây dựng">🏗️<span>Xây dựng</span></button>
+      <button id="btn-arena" title="Đấu trường">⚔️<span>Đấu trường</span></button>
+      <button id="btn-book" title="Sổ rồng">📖<span>Sổ rồng</span></button>
+      <button id="btn-settings" title="Hướng dẫn">⚙️<span>Hướng dẫn</span></button>
+    </div>
+
+    <div id="hint"><span id="hint-text"></span><button id="hint-cancel" class="btn ghost">✖ Hủy (Esc)</button></div>
+
+    <div id="panel">
+      <div class="panel-box">
+        <div class="panel-head">
+          <h2 id="panel-title"></h2>
+          <button id="panel-close" aria-label="Đóng">✖</button>
+        </div>
+        <div id="panel-body"></div>
+      </div>
+    </div>
+
+    <div id="battle"></div>
+    <div id="toasts"></div>
+
+    <div id="loading">
+      <div class="logo">🐉 Đảo Rồng 3D</div>
+      <div class="loading-track"><div id="loading-bar"></div></div>
+      <div id="loading-text">Đang tải rồng...</div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

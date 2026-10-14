@@ -1,0 +1,398 @@
+[
+ {
+  "id": "fire_1",
+  "prompt": "STAGE 2 OF 3 — a powerful ADULT dragon: muscular athletic body, long neck, full-size horns, large wings spread wide, rearing up on its hind legs, roaring, elemental energy swirling around it. Species features: crimson and molten-orange scales, a blazing fire mane along the spine, flaming tail tip, smoldering ember eyes, curved black horns. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "water_1",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "STAGE 2 OF 3 — a powerful ADULT dragon: muscular athletic body, long neck, full-size horns, large wings spread wide, rearing up on its hind legs, roaring, elemental energy swirling around it. Species features: deep sapphire and aqua scales, flowing fin-wings like crashing ocean waves, water spiraling around its body, pearl-white belly plates, coral-like horns. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "earth_1",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "STAGE 2 OF 3 — a powerful ADULT dragon: muscular athletic body, long neck, full-size horns, large wings spread wide, rearing up on its hind legs, roaring, elemental energy swirling around it. Species features: bronze and granite rock-armored hide, jagged crystal-studded stone spikes, massive ram horns, cracked earth plates, heavy stance. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "plant_1",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "STAGE 2 OF 3 — a powerful ADULT dragon: muscular athletic body, long neck, full-size horns, large wings spread wide, rearing up on its hind legs, roaring, elemental energy swirling around it. Species features: emerald green scales, wings made of giant leaves and vines, thorny wooden antler horns, glowing green spores, blossoms along the spine. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "steam_1",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "STAGE 2 OF 3 — a powerful ADULT dragon: muscular athletic body, long neck, full-size horns, large wings spread wide, rearing up on its hind legs, roaring, elemental energy swirling around it. Species features: silver-white armored scales with copper accents, scalding steam jets venting from its back, glowing orange furnace core in the chest. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "lava_1",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "STAGE 2 OF 3 — a powerful ADULT dragon: muscular athletic body, long neck, full-size horns, large wings spread wide, rearing up on its hind legs, roaring, elemental energy swirling around it. Species features: obsidian black rocky hide split by glowing magma cracks, dripping lava, burning orange eyes, smoke rising from its nostrils. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "blossom_1",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "STAGE 2 OF 3 — a powerful ADULT dragon: muscular athletic body, long neck, full-size horns, large wings spread wide, rearing up on its hind legs, roaring, elemental energy swirling around it. Species features: crimson and gold scales, phoenix-like wings made of burning flower petals, a flaming lotus crest on its head, embers and petals swirling. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "mud_1",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "STAGE 2 OF 3 — a powerful ADULT dragon: muscular athletic body, long neck, full-size horns, large wings spread wide, rearing up on its hind legs, roaring, elemental energy swirling around it. Species features: dark earthen brown hide with glowing teal markings, heavy tusks, thick dripping mud armor, swampy water splashing around its claws. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "swamp_1",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "STAGE 2 OF 3 — a powerful ADULT dragon: muscular athletic body, long neck, full-size horns, large wings spread wide, rearing up on its hind legs, roaring, elemental energy swirling around it. Species features: dark teal serpentine body, moss and lily pads on its back, glowing bioluminescent spots, long vine whiskers, eerie green eyes. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "woodstone_1",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "STAGE 2 OF 3 — a powerful ADULT dragon: muscular athletic body, long neck, full-size horns, large wings spread wide, rearing up on its hind legs, roaring, elemental energy swirling around it. Species features: ancient body half gnarled tree bark and half carved runic stone, glowing amber runes, moss, a small tree growing on its back. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "fire_0",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 1 OF 3 — a JUVENILE dragon (adolescent whelp, NOT an adult): small slender lean body, short neck, proportionally larger head with big fierce glaring eyes, SMALL undeveloped wings folded close to its back (wingspan shorter than its body), only short stubby horn nubs, thin tail, small claws, few or no armor plates. Pose: crouched low on ALL FOUR legs, head forward, snarling and hissing, ready to pounce. Its elemental features appear only as small, faint, early signs. Species features: crimson and molten-orange scales, a blazing fire mane along the spine, flaming tail tip, smoldering ember eyes, curved black horns. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "fire_2",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 3 OF 3 — an ancient LEGENDARY ELDER dragon, far bigger and bulkier than an adult: massive heavy body covered in thick plate armor and bony spikes, a crown of many long branching horns, battle scars, glowing runes on its armor, enormous wings fully spread, a blazing elemental aura engulfing it. Pose: towering frontal three-quarter view, head raised high above the wings, chest forward, overwhelming boss presence. Species features: crimson and molten-orange scales, a blazing fire mane along the spine, flaming tail tip, smoldering ember eyes, curved black horns. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "water_0",
+  "ref": [
+   "water_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 1 OF 3 — a JUVENILE dragon (adolescent whelp, NOT an adult): small slender lean body, short neck, proportionally larger head with big fierce glaring eyes, SMALL undeveloped wings folded close to its back (wingspan shorter than its body), only short stubby horn nubs, thin tail, small claws, few or no armor plates. Pose: crouched low on ALL FOUR legs, head forward, snarling and hissing, ready to pounce. Its elemental features appear only as small, faint, early signs. Species features: deep sapphire and aqua scales, flowing fin-wings like crashing ocean waves, water spiraling around its body, pearl-white belly plates, coral-like horns. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "water_2",
+  "ref": [
+   "water_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 3 OF 3 — an ancient LEGENDARY ELDER dragon, far bigger and bulkier than an adult: massive heavy body covered in thick plate armor and bony spikes, a crown of many long branching horns, battle scars, glowing runes on its armor, enormous wings fully spread, a blazing elemental aura engulfing it. Pose: towering frontal three-quarter view, head raised high above the wings, chest forward, overwhelming boss presence. Species features: deep sapphire and aqua scales, flowing fin-wings like crashing ocean waves, water spiraling around its body, pearl-white belly plates, coral-like horns. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "earth_0",
+  "ref": [
+   "earth_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 1 OF 3 — a JUVENILE dragon (adolescent whelp, NOT an adult): small slender lean body, short neck, proportionally larger head with big fierce glaring eyes, SMALL undeveloped wings folded close to its back (wingspan shorter than its body), only short stubby horn nubs, thin tail, small claws, few or no armor plates. Pose: crouched low on ALL FOUR legs, head forward, snarling and hissing, ready to pounce. Its elemental features appear only as small, faint, early signs. Species features: bronze and granite rock-armored hide, jagged crystal-studded stone spikes, massive ram horns, cracked earth plates, heavy stance. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "earth_2",
+  "ref": [
+   "earth_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 3 OF 3 — an ancient LEGENDARY ELDER dragon, far bigger and bulkier than an adult: massive heavy body covered in thick plate armor and bony spikes, a crown of many long branching horns, battle scars, glowing runes on its armor, enormous wings fully spread, a blazing elemental aura engulfing it. Pose: towering frontal three-quarter view, head raised high above the wings, chest forward, overwhelming boss presence. Species features: bronze and granite rock-armored hide, jagged crystal-studded stone spikes, massive ram horns, cracked earth plates, heavy stance. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "plant_0",
+  "ref": [
+   "plant_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 1 OF 3 — a JUVENILE dragon (adolescent whelp, NOT an adult): small slender lean body, short neck, proportionally larger head with big fierce glaring eyes, SMALL undeveloped wings folded close to its back (wingspan shorter than its body), only short stubby horn nubs, thin tail, small claws, few or no armor plates. Pose: crouched low on ALL FOUR legs, head forward, snarling and hissing, ready to pounce. Its elemental features appear only as small, faint, early signs. Species features: emerald green scales, wings made of giant leaves and vines, thorny wooden antler horns, glowing green spores, blossoms along the spine. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "plant_2",
+  "ref": [
+   "plant_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 3 OF 3 — an ancient LEGENDARY ELDER dragon, far bigger and bulkier than an adult: massive heavy body covered in thick plate armor and bony spikes, a crown of many long branching horns, battle scars, glowing runes on its armor, enormous wings fully spread, a blazing elemental aura engulfing it. Pose: towering frontal three-quarter view, head raised high above the wings, chest forward, overwhelming boss presence. Species features: emerald green scales, wings made of giant leaves and vines, thorny wooden antler horns, glowing green spores, blossoms along the spine. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "steam_0",
+  "ref": [
+   "steam_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 1 OF 3 — a JUVENILE dragon (adolescent whelp, NOT an adult): small slender lean body, short neck, proportionally larger head with big fierce glaring eyes, SMALL undeveloped wings folded close to its back (wingspan shorter than its body), only short stubby horn nubs, thin tail, small claws, few or no armor plates. Pose: crouched low on ALL FOUR legs, head forward, snarling and hissing, ready to pounce. Its elemental features appear only as small, faint, early signs. Species features: silver-white armored scales with copper accents, scalding steam jets venting from its back, glowing orange furnace core in the chest. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "steam_2",
+  "ref": [
+   "steam_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 3 OF 3 — an ancient LEGENDARY ELDER dragon, far bigger and bulkier than an adult: massive heavy body covered in thick plate armor and bony spikes, a crown of many long branching horns, battle scars, glowing runes on its armor, enormous wings fully spread, a blazing elemental aura engulfing it. Pose: towering frontal three-quarter view, head raised high above the wings, chest forward, overwhelming boss presence. Species features: silver-white armored scales with copper accents, scalding steam jets venting from its back, glowing orange furnace core in the chest. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "lava_0",
+  "ref": [
+   "lava_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 1 OF 3 — a JUVENILE dragon (adolescent whelp, NOT an adult): small slender lean body, short neck, proportionally larger head with big fierce glaring eyes, SMALL undeveloped wings folded close to its back (wingspan shorter than its body), only short stubby horn nubs, thin tail, small claws, few or no armor plates. Pose: crouched low on ALL FOUR legs, head forward, snarling and hissing, ready to pounce. Its elemental features appear only as small, faint, early signs. Species features: obsidian black rocky hide split by glowing magma cracks, dripping lava, burning orange eyes, smoke rising from its nostrils. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "lava_2",
+  "ref": [
+   "lava_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 3 OF 3 — an ancient LEGENDARY ELDER dragon, far bigger and bulkier than an adult: massive heavy body covered in thick plate armor and bony spikes, a crown of many long branching horns, battle scars, glowing runes on its armor, enormous wings fully spread, a blazing elemental aura engulfing it. Pose: towering frontal three-quarter view, head raised high above the wings, chest forward, overwhelming boss presence. Species features: obsidian black rocky hide split by glowing magma cracks, dripping lava, burning orange eyes, smoke rising from its nostrils. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "blossom_0",
+  "ref": [
+   "blossom_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 1 OF 3 — a JUVENILE dragon (adolescent whelp, NOT an adult): small slender lean body, short neck, proportionally larger head with big fierce glaring eyes, SMALL undeveloped wings folded close to its back (wingspan shorter than its body), only short stubby horn nubs, thin tail, small claws, few or no armor plates. Pose: crouched low on ALL FOUR legs, head forward, snarling and hissing, ready to pounce. Its elemental features appear only as small, faint, early signs. Species features: crimson and gold scales, phoenix-like wings made of burning flower petals, a flaming lotus crest on its head, embers and petals swirling. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "blossom_2",
+  "ref": [
+   "blossom_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 3 OF 3 — an ancient LEGENDARY ELDER dragon, far bigger and bulkier than an adult: massive heavy body covered in thick plate armor and bony spikes, a crown of many long branching horns, battle scars, glowing runes on its armor, enormous wings fully spread, a blazing elemental aura engulfing it. Pose: towering frontal three-quarter view, head raised high above the wings, chest forward, overwhelming boss presence. Species features: crimson and gold scales, phoenix-like wings made of burning flower petals, a flaming lotus crest on its head, embers and petals swirling. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "mud_0",
+  "ref": [
+   "mud_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 1 OF 3 — a JUVENILE dragon (adolescent whelp, NOT an adult): small slender lean body, short neck, proportionally larger head with big fierce glaring eyes, SMALL undeveloped wings folded close to its back (wingspan shorter than its body), only short stubby horn nubs, thin tail, small claws, few or no armor plates. Pose: crouched low on ALL FOUR legs, head forward, snarling and hissing, ready to pounce. Its elemental features appear only as small, faint, early signs. Species features: dark earthen brown hide with glowing teal markings, heavy tusks, thick dripping mud armor, swampy water splashing around its claws. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "mud_2",
+  "ref": [
+   "mud_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 3 OF 3 — an ancient LEGENDARY ELDER dragon, far bigger and bulkier than an adult: massive heavy body covered in thick plate armor and bony spikes, a crown of many long branching horns, battle scars, glowing runes on its armor, enormous wings fully spread, a blazing elemental aura engulfing it. Pose: towering frontal three-quarter view, head raised high above the wings, chest forward, overwhelming boss presence. Species features: dark earthen brown hide with glowing teal markings, heavy tusks, thick dripping mud armor, swampy water splashing around its claws. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "swamp_0",
+  "ref": [
+   "swamp_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 1 OF 3 — a JUVENILE dragon (adolescent whelp, NOT an adult): small slender lean body, short neck, proportionally larger head with big fierce glaring eyes, SMALL undeveloped wings folded close to its back (wingspan shorter than its body), only short stubby horn nubs, thin tail, small claws, few or no armor plates. Pose: crouched low on ALL FOUR legs, head forward, snarling and hissing, ready to pounce. Its elemental features appear only as small, faint, early signs. Species features: dark teal serpentine body, moss and lily pads on its back, glowing bioluminescent spots, long vine whiskers, eerie green eyes. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "swamp_2",
+  "ref": [
+   "swamp_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 3 OF 3 — an ancient LEGENDARY ELDER dragon, far bigger and bulkier than an adult: massive heavy body covered in thick plate armor and bony spikes, a crown of many long branching horns, battle scars, glowing runes on its armor, enormous wings fully spread, a blazing elemental aura engulfing it. Pose: towering frontal three-quarter view, head raised high above the wings, chest forward, overwhelming boss presence. Species features: dark teal serpentine body, moss and lily pads on its back, glowing bioluminescent spots, long vine whiskers, eerie green eyes. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "woodstone_0",
+  "ref": [
+   "woodstone_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 1 OF 3 — a JUVENILE dragon (adolescent whelp, NOT an adult): small slender lean body, short neck, proportionally larger head with big fierce glaring eyes, SMALL undeveloped wings folded close to its back (wingspan shorter than its body), only short stubby horn nubs, thin tail, small claws, few or no armor plates. Pose: crouched low on ALL FOUR legs, head forward, snarling and hissing, ready to pounce. Its elemental features appear only as small, faint, early signs. Species features: ancient body half gnarled tree bark and half carved runic stone, glowing amber runes, moss, a small tree growing on its back. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "woodstone_2",
+  "ref": [
+   "woodstone_1"
+  ],
+  "prompt": "Use the reference image ONLY for the species color palette and signature features. Do NOT edit, trace or reuse the reference image: draw a completely NEW illustration with a DIFFERENT body size, proportions and pose as described below. STAGE 3 OF 3 — an ancient LEGENDARY ELDER dragon, far bigger and bulkier than an adult: massive heavy body covered in thick plate armor and bony spikes, a crown of many long branching horns, battle scars, glowing runes on its armor, enormous wings fully spread, a blazing elemental aura engulfing it. Pose: towering frontal three-quarter view, head raised high above the wings, chest forward, overwhelming boss presence. Species features: ancient body half gnarled tree bark and half carved runic stone, glowing amber runes, moss, a small tree growing on its back. Premium fantasy mobile game creature art, like a high-end collectible dragon card game: detailed painterly digital illustration, dramatic rim lighting, rich saturated colors, finely detailed scales and armor plates, glowing elemental effects, sharp claws and fangs, intense glowing eyes, three-quarter view, body facing toward the left side of the image. Whole creature fully visible, centered with margin, isolated on a plain flat pure white background. No ground, no cast shadow, no text, no frame, no watermark. NOT chibi, NOT cute, NOT a baby, NOT cartoonish."
+ },
+ {
+  "id": "egg_fire",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a single ornate magical dragon egg standing upright, glowing faintly, its shell patterned with scales and colors inspired by: crimson and molten-orange scales, a blazing fire mane along the spine, flaming tail tip, smoldering ember eyes, curved black horns. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "egg_water",
+  "ref": [
+   "water_1"
+  ],
+  "prompt": "a single ornate magical dragon egg standing upright, glowing faintly, its shell patterned with scales and colors inspired by: deep sapphire and aqua scales, flowing fin-wings like crashing ocean waves, water spiraling around its body, pearl-white belly plates, coral-like horns. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "egg_earth",
+  "ref": [
+   "earth_1"
+  ],
+  "prompt": "a single ornate magical dragon egg standing upright, glowing faintly, its shell patterned with scales and colors inspired by: bronze and granite rock-armored hide, jagged crystal-studded stone spikes, massive ram horns, cracked earth plates, heavy stance. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "egg_plant",
+  "ref": [
+   "plant_1"
+  ],
+  "prompt": "a single ornate magical dragon egg standing upright, glowing faintly, its shell patterned with scales and colors inspired by: emerald green scales, wings made of giant leaves and vines, thorny wooden antler horns, glowing green spores, blossoms along the spine. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "egg_steam",
+  "ref": [
+   "steam_1"
+  ],
+  "prompt": "a single ornate magical dragon egg standing upright, glowing faintly, its shell patterned with scales and colors inspired by: silver-white armored scales with copper accents, scalding steam jets venting from its back, glowing orange furnace core in the chest. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "egg_lava",
+  "ref": [
+   "lava_1"
+  ],
+  "prompt": "a single ornate magical dragon egg standing upright, glowing faintly, its shell patterned with scales and colors inspired by: obsidian black rocky hide split by glowing magma cracks, dripping lava, burning orange eyes, smoke rising from its nostrils. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "egg_blossom",
+  "ref": [
+   "blossom_1"
+  ],
+  "prompt": "a single ornate magical dragon egg standing upright, glowing faintly, its shell patterned with scales and colors inspired by: crimson and gold scales, phoenix-like wings made of burning flower petals, a flaming lotus crest on its head, embers and petals swirling. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "egg_mud",
+  "ref": [
+   "mud_1"
+  ],
+  "prompt": "a single ornate magical dragon egg standing upright, glowing faintly, its shell patterned with scales and colors inspired by: dark earthen brown hide with glowing teal markings, heavy tusks, thick dripping mud armor, swampy water splashing around its claws. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "egg_swamp",
+  "ref": [
+   "swamp_1"
+  ],
+  "prompt": "a single ornate magical dragon egg standing upright, glowing faintly, its shell patterned with scales and colors inspired by: dark teal serpentine body, moss and lily pads on its back, glowing bioluminescent spots, long vine whiskers, eerie green eyes. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "egg_woodstone",
+  "ref": [
+   "woodstone_1"
+  ],
+  "prompt": "a single ornate magical dragon egg standing upright, glowing faintly, its shell patterned with scales and colors inspired by: ancient body half gnarled tree bark and half carved runic stone, glowing amber runes, moss, a small tree growing on its back. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "habitat_fire",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a volcanic dragon lair: round rocky platform with a small erupting volcano, a bubbling lava pool and glowing orange crystals, seen from an isometric three-quarter top-down view, round base, empty with no creatures. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "habitat_water",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a water dragon lair: round island with a clear turquoise pool, a little waterfall over rocks, seashells and coral, seen from an isometric three-quarter top-down view, round base, empty with no creatures. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "habitat_earth",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "an earth dragon lair: round rocky canyon with boulders, sandstone pillars, glowing crystals and a small cave, seen from an isometric three-quarter top-down view, round base, empty with no creatures. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "habitat_plant",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a plant dragon lair: round lush jungle hill with giant leaves, vines, red mushrooms and flowers, seen from an isometric three-quarter top-down view, round base, empty with no creatures. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "hatchery",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a dragon egg hatchery: round stone-and-wood tower with a glowing magical nest on top and warm lanterns, seen from an isometric three-quarter top-down view, round base, empty with no creatures. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "breeding",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a mystical dragon breeding mountain: twin rocky peaks joined by a glowing pink heart-shaped crystal cave, sparkles, seen from an isometric three-quarter top-down view, round base, empty with no creatures. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "farm",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a small square farm plot with neat rows of tilled brown soil and wooden fence posts at the corners, empty, seen from an isometric three-quarter top-down view, round base, empty with no creatures. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "crop_grass",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a small bunch of golden ripe rice plants. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "crop_corn",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a single corn plant with big fiery orange-red cobs. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "crop_berry",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a small round berry bush with big glossy red berries. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "tree_sakura",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a lush pink cherry blossom tree with a twisting trunk. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "tree_gold",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a round lush golden yellow autumn tree. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "tree_palm",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a tropical coconut palm tree. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "mushrooms",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a cluster of three blue mushrooms with white spots. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "flowers",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a small patch of white daisies and pink flowers with green leaves. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "lantern",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a red Asian paper lantern hanging from a small wooden pole. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "rocks",
+  "ref": [
+   "fire_1"
+  ],
+  "prompt": "a small cluster of mossy grey rocks. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ }
+]
