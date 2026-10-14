@@ -165,12 +165,12 @@ export class Panels {
         { class: 'row card' },
         h('div', { class: 'grow' }, h('div', { class: 'big', 'data-hab-gold': id }), h('div', { class: 'muted' }, `+${fmtNum(habitatRate(this.s, hb))} vàng/phút`)),
         h('button', { class: 'btn gold', onclick: () => this.game.act((s, now) => collectGold(s, hb, now), { sfx: 'coin' }) }, '💰 Thu vàng'),
-        h('button', { class: 'btn ghost', onclick: () => { this.close(); this.hooks.move(id); } }, '↔ Di chuyển'),
+        h('button', { class: 'btn ghost', onclick: () => { this.close(); this.hooks.move(id); } }, '⇄ Di chuyển'),
       ),
       h('h3', {}, `Rồng trong chuồng (${dragons.length}/${HABITAT_CAPACITY})`),
       dragons.map((d) => this.dragonCard(d)),
       dragons.length < HABITAT_CAPACITY
-        ? h('div', { class: 'card empty' }, '➕ Còn chỗ trống — lai tạo & ấp trứng để có rồng mới')
+        ? h('div', { class: 'card empty' }, 'Còn chỗ trống — lai tạo & ấp trứng để có rồng mới')
         : null,
     );
   }
@@ -216,7 +216,7 @@ export class Panels {
   private farm(id: number): HTMLElement {
     const farm = findBuilding(this.s, id, 'farm');
     if (!farm) return h('div', {}, 'Không còn ruộng này');
-    const move = h('button', { class: 'btn ghost', onclick: () => { this.close(); this.hooks.move(id); } }, '↔ Di chuyển');
+    const move = h('button', { class: 'btn ghost', onclick: () => { this.close(); this.hooks.move(id); } }, '⇄ Di chuyển');
     if (farm.crop) {
       const crop = CROPS.find((c) => c.id === farm.crop!.cropId)!;
       const done = timerDone(farm.crop, this.game.now());
@@ -463,7 +463,7 @@ export class Panels {
                   this.refresh();
                 },
               },
-              h('span', { class: 'check' }, picked ? '☑' : '☐'),
+              h('span', { class: `check ${picked ? 'on' : ''}` }),
               portrait(d.species, d.level),
               h('b', {}, SPECIES[d.species].name),
               h('span', { class: 'lvl' }, `Cấp ${d.level}`),
@@ -529,7 +529,7 @@ export class Panels {
           h('li', {}, `💞 Rồng cấp ${BALANCE.breedMinLevel}+ đem lai ở Núi Lai Tạo → trứng → Lò Ấp → nở rồng mới.`),
           h('li', {}, '🏗️ Xây thêm chuồng đúng hệ để chứa rồng mới.'),
           h('li', {}, '⚔️ Đấu Trường: chọn chiêu khắc hệ đối thủ để thắng lấy 💎.'),
-          h('li', {}, '🖱️ Kéo chuột trái để xoay, chuột phải để di chuyển, cuộn để phóng to.'),
+          h('li', {}, 'Kéo chuột trái để xoay, chuột phải để di chuyển, cuộn để phóng to.'),
         ),
         h('p', { class: 'muted small' }, 'Game tự lưu trên trình duyệt. Model 3D: Quaternius & Kenney (CC0).'),
         h(
@@ -542,7 +542,7 @@ export class Panels {
               this.refresh();
             },
           },
-          isMuted() ? '🔇 Âm thanh: Tắt' : '🔊 Âm thanh: Bật',
+          isMuted() ? 'Âm thanh: Tắt' : 'Âm thanh: Bật',
         ),
         ' ',
         h(
@@ -558,7 +558,7 @@ export class Panels {
               this.game.reset();
             },
           },
-          this.resetArmed ? '⚠️ Bấm lần nữa để XÓA HẾT' : '🗑️ Chơi lại từ đầu',
+          this.resetArmed ? 'Bấm lần nữa để XÓA HẾT' : 'Chơi lại từ đầu',
         ),
       ),
     );

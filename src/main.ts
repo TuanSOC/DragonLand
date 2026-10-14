@@ -19,6 +19,7 @@ import { BattleUI } from './ui/battleUI';
 import { fmtNum } from './ui/format';
 import { setupDevTools } from './ui/devTools';
 import { Panels } from './ui/panels';
+import { icon, type IconName, type IconSize } from './ui/icons';
 import { sfx } from './ui/sound';
 import { toast } from './ui/toast';
 
@@ -37,6 +38,10 @@ async function boot(): Promise<void> {
   $('loading').classList.add('hide');
 
   const game = new Game(loadGame(Date.now()));
+  // icon trên HUD/menu (ảnh vẽ nếu có, không thì emoji)
+  document.querySelectorAll<HTMLElement>('[data-icon]').forEach((el) => {
+    el.replaceChildren(icon(el.dataset.icon as IconName, (el.dataset.size as IconSize) ?? 'sm'));
+  });
   const app = $('app');
 
   // ── Renderer ──
@@ -247,6 +252,8 @@ async function boot(): Promise<void> {
     renderer.setSize(w, hgt);
     labels.setSize(w, hgt);
     camera.aspect = w / hgt;
+    // màn hình dọc (điện thoại): mở rộng góc nhìn để thấy cả đảo
+    camera.fov = camera.aspect < 1 ? 42 + (1 - camera.aspect) * 30 : 42;
     camera.updateProjectionMatrix();
     battleView.resize(w / hgt, hgt * renderer.getPixelRatio());
     world.particles.resize(hgt * renderer.getPixelRatio(), camera.fov);

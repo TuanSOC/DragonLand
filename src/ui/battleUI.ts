@@ -80,7 +80,7 @@ export class BattleUI {
       ? h(
           'div',
           { class: 'result' },
-          h('div', { class: 'result-box' }, h('h2', {}, this.b.over === 'win' ? '🏆 CHIẾN THẮNG!' : '💀 THẤT BẠI'), h('p', {}, this.result), h('button', { class: 'btn ok', onclick: () => this.exit() }, '🏝️ Về đảo')),
+          h('div', { class: 'result-box' }, h('h2', {}, this.b.over === 'win' ? '🏆 CHIẾN THẮNG!' : 'THẤT BẠI'), h('p', {}, this.result), h('button', { class: 'btn ok', onclick: () => this.exit() }, 'Về đảo')),
         )
       : '';
     this.el.replaceChildren(
@@ -90,7 +90,7 @@ export class BattleUI {
         'div',
         { class: 'battle-bottom' },
         h('div', { class: 'moves' }, moves),
-        h('button', { class: 'btn ghost flee', disabled: this.busy, onclick: () => this.exit() }, '🏳️ Bỏ chạy'),
+        h('button', { class: 'btn ghost flee', disabled: this.busy, onclick: () => this.exit() }, 'Bỏ chạy'),
       ),
       resultBox,
     );

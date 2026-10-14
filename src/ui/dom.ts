@@ -1,4 +1,6 @@
 // Hàm nhỏ để tạo phần tử DOM gọn hơn: h('button', { class: 'btn', onclick }, 'Bấm')
+import { rich } from './icons';
+
 type Child = Node | string | number | null | undefined | false;
 type Attrs = Record<string, unknown>;
 
@@ -24,7 +26,9 @@ export function h<K extends keyof HTMLElementTagNameMap>(
   }
   for (const c of children.flat()) {
     if (c === null || c === undefined || c === false) continue;
-    el.append(c instanceof Node ? c : String(c));
+    if (c instanceof Node) el.append(c);
+    else if (tag === 'option') el.append(String(c));
+    else el.append(...rich(String(c)));
   }
   return el;
 }

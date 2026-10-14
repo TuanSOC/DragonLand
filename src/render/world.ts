@@ -16,6 +16,7 @@ import {
   type GameState,
 } from '../logic/state';
 import { fmtTime } from '../ui/format';
+import { setRich } from '../ui/icons';
 import { spawn, tintAll, tintByName } from './assets';
 import { DragonHerd } from './herd';
 import { IslandScenery, islandRadius } from './island';
@@ -193,7 +194,7 @@ export class IslandWorld {
     const anchor = document.createElement('div');
     const el = document.createElement('div');
     el.className = 'float-text';
-    el.textContent = text;
+    setRich(el, text);
     anchor.appendChild(el);
     const obj = new CSS2DObject(anchor);
     obj.position.set(0, v.top - 0.4, 0);
@@ -403,7 +404,10 @@ export class IslandWorld {
           ready = true;
         } else text = `💞 ${fmtTime(timerRemainingMs(b.job, now))}`;
       }
-      if (v.labelEl.textContent !== text) v.labelEl.textContent = text;
+      if (v.labelEl.dataset.text !== text) {
+        v.labelEl.dataset.text = text;
+        setRich(v.labelEl, text);
+      }
       v.labelEl.classList.toggle('ready', ready);
     }
   }

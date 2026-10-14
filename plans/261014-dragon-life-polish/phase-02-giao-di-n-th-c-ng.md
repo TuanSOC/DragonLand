@@ -1,10 +1,11 @@
 ---
 phase: 2
-title: "Giao diện thủ công"
-status: pending
+title: Giao diện thủ công
+status: completed
 priority: P2
-effort: "0.75d"
-dependencies: [1]
+effort: 0.75d
+dependencies:
+  - 1
 ---
 
 # Phase 2: Giao diện thủ công
@@ -47,10 +48,15 @@ export function elementIcon(e: Element, size?): HTMLElement
 6. Chụp màn hình so trước/sau.
 
 ## Success Criteria
-- [ ] Khi đủ icon: không còn emoji hiển thị trên HUD, menu, bảng, nhãn (script quét = 0).
-- [ ] Chưa có icon: UI vẫn đầy đủ bằng emoji fallback.
-- [ ] Baloo 2 hiển thị đúng dấu tiếng Việt (ạ, ữ, ỗ, ặ…).
-- [ ] Bảng/nút/HUD có khung gỗ; hiển thị ổn ở 375px chiều ngang.
+- [x] Khi đủ icon: không còn emoji hiển thị trên HUD, menu, bảng, nhãn (`node tools/check-emoji.cjs` = OK). *Ảnh icon chờ user vẽ bằng Antigravity (mục 7 `art/PROMPTS.md`).*
+- [x] Chưa có icon: UI vẫn đầy đủ bằng emoji fallback.
+- [x] Baloo 2 hiển thị đúng dấu tiếng Việt (ạ, ữ, ỗ, ặ…).
+- [x] Bảng/nút/HUD có khung gỗ; hiển thị ổn ở 375px chiều ngang (thêm: màn hình dọc tự mở rộng FOV).
+
+## Kết quả thực hiện (2026-10-14)
+- `ui/icons.ts`: `icon()`, `rich()` — `h()` tự đổi emoji → icon (trừ `<option>`), toast/nhãn công trình/HUD/menu dùng chung.
+- 22 icon trong prompt (thêm `farm`, `lock`, `check` so với plan); icon cutout 128px, không nạp lên GPU.
+- Emoji trang trí vô nghĩa (💀🏝️🏳️☑☐🔊🗑️⚠️🖱️➕✖↔) bỏ hoặc thay ký tự/CSS.
 
 ## Risk Assessment
 - Icon AI không đồng bộ phong cách → vẽ `icon_gold` trước làm tham chiếu (giống quy trình rồng).

@@ -8,6 +8,7 @@ const groups = [
   ['4. Trứng rồng', (j) => j.id.startsWith('egg_')],
   ['5. Công trình', (j) => /^(habitat_|hatchery|breeding|farm)/.test(j.id)],
   ['6. Cây trồng & trang trí', (j) => /^(crop_|tree_|mushrooms|flowers|lantern|rocks)/.test(j.id)],
+  ['7. Icon giao diện — vẽ icon_gold trước, các icon sau tham chiếu icon_gold', (j) => j.id.startsWith('icon_')],
 ];
 
 let md = `# Danh sách ảnh cần vẽ cho Đảo Rồng 3D

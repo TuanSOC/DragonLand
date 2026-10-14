@@ -394,5 +394,156 @@
    "fire_1"
   ],
   "prompt": "a small cluster of mossy grey rocks. Detailed hand-painted fantasy mobile game art, vibrant saturated colors, soft painterly shading with glossy highlights, clean outline. Single object fully visible, centered with margin, isolated on a plain flat pure white background. No ground plane beyond the object itself, no cast shadow, no text, no frame, no watermark."
+ },
+ {
+  "id": "icon_gold",
+  "prompt": "a small stack of shiny gold coins with a dragon emblem. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_gem",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a sparkling faceted magenta-violet diamond gem. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_food",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a juicy roasted meat drumstick on a bone. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_xp",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a glowing golden five-pointed star. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_dragon",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a fierce red dragon head emblem in side profile. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_trophy",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a golden trophy cup with two handles and a ruby. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_build",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a wooden hammer crossed with a carpenter saw. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_arena",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "two crossed steel swords over a round wooden shield. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_book",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "an old leather-bound book with a golden dragon emblem on the cover. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_settings",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a bronze gear cog. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_collect",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "an open leather sack overflowing with gold coins. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_fire",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a stylized orange-red flame. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_water",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a stylized glossy blue water droplet. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_earth",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a stylized cracked brown boulder. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_plant",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a stylized fresh green leaf sprout. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_egg",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a spotted cream and orange dragon egg. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_timer",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a small brass hourglass with golden sand. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_heart",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a glossy pink heart. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_speed",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a bright yellow lightning bolt. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_farm",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a golden wheat sheaf tied with string. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_lock",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a closed iron padlock. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
+ },
+ {
+  "id": "icon_check",
+  "ref": [
+   "icon_gold"
+  ],
+  "prompt": "a bold green check mark. Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark"
  }
 ]

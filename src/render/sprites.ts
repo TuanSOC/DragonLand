@@ -5,6 +5,8 @@ import * as THREE from 'three';
 
 const textures = new Map<string, THREE.Texture>();
 const sizes = new Map<string, { w: number; h: number }>();
+/** mọi ảnh có trong manifest (kể cả icon UI không nạp thành texture) */
+const available = new Set<string>();
 
 export async function loadSprites(): Promise<void> {
   const base = `${import.meta.env.BASE_URL}sprites/`;
@@ -16,19 +18,28 @@ export async function loadSprites(): Promise<void> {
     return; // chưa có sprite nào → dùng GLB
   }
   const loader = new THREE.TextureLoader();
+  for (const id of Object.keys(manifest)) available.add(id);
   await Promise.all(
-    Object.entries(manifest).map(async ([id, size]) => {
-      try {
-        const tex = await loader.loadAsync(`${base}${id}.png`);
-        tex.colorSpace = THREE.SRGBColorSpace;
-        tex.anisotropy = 4;
-        textures.set(id, tex);
-        sizes.set(id, size);
-      } catch {
-        /* bỏ qua ảnh lỗi */
-      }
-    }),
+    Object.entries(manifest)
+      // icon chỉ dùng trong DOM (<img>), không cần nạp lên GPU
+      .filter(([id]) => !id.startsWith('icon_'))
+      .map(async ([id, size]) => {
+        try {
+          const tex = await loader.loadAsync(`${base}${id}.png`);
+          tex.colorSpace = THREE.SRGBColorSpace;
+          tex.anisotropy = 4;
+          textures.set(id, tex);
+          sizes.set(id, size);
+        } catch {
+          /* bỏ qua ảnh lỗi */
+        }
+      }),
   );
+}
+
+/** Có file ảnh này trong public/sprites không (dùng cho icon giao diện). */
+export function hasImage(id: string): boolean {
+  return available.has(id);
 }
 
 export function hasSprite(id: string): boolean {

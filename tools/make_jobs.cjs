@@ -104,5 +104,39 @@ const props = {
 };
 for (const [id, p] of Object.entries(props)) jobs.push({ id, ref: ['fire_1'], prompt: world(p) });
 
+// Icon giao diện: hiển thị nhỏ (24–48px) nên cần hình khối rõ, viền đậm
+const ICON_STYLE =
+  'Polished fantasy mobile game UI icon, bold readable silhouette that stays clear at 32 pixels, thick dark outline, ' +
+  'glossy painted highlights, rich saturated colors, slight 3/4 view, single object centered and filling most of the frame, ' +
+  'isolated on a plain flat pure white background. No text, no letters, no frame, no badge background, no shadow, no watermark';
+const icons = {
+  icon_gold: 'a small stack of shiny gold coins with a dragon emblem',
+  icon_gem: 'a sparkling faceted magenta-violet diamond gem',
+  icon_food: 'a juicy roasted meat drumstick on a bone',
+  icon_xp: 'a glowing golden five-pointed star',
+  icon_dragon: 'a fierce red dragon head emblem in side profile',
+  icon_trophy: 'a golden trophy cup with two handles and a ruby',
+  icon_build: 'a wooden hammer crossed with a carpenter saw',
+  icon_arena: 'two crossed steel swords over a round wooden shield',
+  icon_book: 'an old leather-bound book with a golden dragon emblem on the cover',
+  icon_settings: 'a bronze gear cog',
+  icon_collect: 'an open leather sack overflowing with gold coins',
+  icon_fire: 'a stylized orange-red flame',
+  icon_water: 'a stylized glossy blue water droplet',
+  icon_earth: 'a stylized cracked brown boulder',
+  icon_plant: 'a stylized fresh green leaf sprout',
+  icon_egg: 'a spotted cream and orange dragon egg',
+  icon_timer: 'a small brass hourglass with golden sand',
+  icon_heart: 'a glossy pink heart',
+  icon_speed: 'a bright yellow lightning bolt',
+  icon_farm: 'a golden wheat sheaf tied with string',
+  icon_lock: 'a closed iron padlock',
+  icon_check: 'a bold green check mark',
+};
+jobs.push({ id: 'icon_gold', prompt: `${icons.icon_gold}. ${ICON_STYLE}` });
+for (const [id, p] of Object.entries(icons)) {
+  if (id !== 'icon_gold') jobs.push({ id, ref: ['icon_gold'], prompt: `${p}. ${ICON_STYLE}` });
+}
+
 fs.writeFileSync('tools/sprites.json', JSON.stringify(jobs, null, 1));
 console.log(jobs.length, 'jobs');

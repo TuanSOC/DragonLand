@@ -55,7 +55,7 @@ for (const file of fs.readdirSync(RAW).filter((f) => /\.(png|jpe?g|webp)$/i.test
     flood, '(', flood, '-alpha', 'extract', keep, '-compose', 'multiply', '-composite', ')',
     '-alpha', 'off', '-compose', 'copy-opacity', '-composite',
     '-channel', 'A', '-morphology', 'Erode', 'Disk:1', '+channel',
-    '-trim', '+repage', '-resize', '512x512>', dst,
+    '-trim', '+repage', '-resize', id.startsWith('icon_') ? '128x128>' : '512x512>', dst, // icon chỉ hiện nhỏ trên UI
   );
   const [ow, oh] = magick('identify', '-format', '%w %h', dst).split(' ').map(Number);
   manifest[id] = { w: ow, h: oh };
