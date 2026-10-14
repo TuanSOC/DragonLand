@@ -316,3 +316,13 @@ body.in-battle #btn-dev { display: none; }
   .vs { display: none; }
   .panel-head h2 { font-size: 19px; }
 }
+
+/* ── Thanh trượt âm lượng ── */
+.vol-row { margin: 8px 0; }
+.vol-label { width: 90px; font-weight: 800; }
+.vol { flex: 1; accent-color: var(--gold-dark); }
+.vol-value { width: 34px; text-align: right; }
+
+/* ── Icon bay vào HUD ── */
+.flyer { position: fixed; left: 0; top: 0; z-index: 40; pointer-events: none; margin: -12px 0 0 -12px; will-change: transform, opacity; }
+.flyer.ico-emoji { font-size: 22px; }

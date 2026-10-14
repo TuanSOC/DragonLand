@@ -22,8 +22,11 @@ Thêm:
 - ⭐ **Cấp người chơi**: mọi hành động cho XP, lên cấp nhận 💎 + vàng.
 - 💰 Bấm **đồng xu** trên chuồng để thu vàng nhanh.
 - ✨ Rồng **tiến hóa** ở cấp 4 (Trưởng Thành) và 7 (Huyền Thoại) — đổi hình.
-- 🔊 Âm thanh tổng hợp (tắt trong ⚙️ Hướng dẫn).
-- 🛠 **Chế độ dev**: mở `http://localhost:5173/?dev=1` — save riêng, có nút thêm tài nguyên, xong ngay bộ đếm, tăng cấp rồng, tua thời gian.
+- 🐉 Rồng **tự sống**: đi lang thang, ngủ, gầm, phun hơi thở theo hệ, bay vòng đảo; bấm vào rồng để tương tác.
+- 🌅 **Ngày – đêm theo giờ máy**: bình minh, hoàng hôn, đêm có đèn lồng & đom đóm; cánh hoa, bướm, chim, cá nhảy.
+- 🎵 **Nhạc ngũ cung** tự sinh (vào trận đổi nhạc trống) + hiệu ứng âm thanh — chỉnh âm lượng riêng trong ⚙️ Hướng dẫn.
+- 📱 Máy yếu / điện thoại tự giảm hiệu ứng (ép thử: `?tier=low`).
+- 🛠 **Chế độ dev**: mở `http://localhost:5173/?dev=1` — save riêng, có nút thêm tài nguyên, xong ngay bộ đếm, tăng cấp rồng, tua thời gian, gọi rồng bay, chọn giờ trong ngày.
 
 Thời gian chạy theo giờ thật — tắt game mở lại vẫn sinh vàng, cây vẫn lớn. Game tự lưu trong trình duyệt.
 

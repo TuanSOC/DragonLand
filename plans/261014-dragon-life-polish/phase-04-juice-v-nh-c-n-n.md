@@ -1,10 +1,12 @@
 ---
 phase: 4
-title: "Juice và nhạc nền"
-status: pending
+title: Juice và nhạc nền
+status: completed
 priority: P3
-effort: "0.75d"
-dependencies: [1, 2]
+effort: 0.75d
+dependencies:
+  - 1
+  - 2
 ---
 
 # Phase 4: Juice và nhạc nền
@@ -48,11 +50,16 @@ src/ui/juice.ts    flyIcons(fromScreen, toEl, icon, n), tweenNumber(el, from, to
 6. Chơi thử 10 phút liên tục: nhạc không lặp nhàm, không rè/clip, không rò bộ nhớ (node âm thanh được disconnect).
 
 ## Success Criteria
-- [ ] Thu vàng thấy xu bay vào HUD, số tăng dần, ô HUD nảy.
-- [ ] Xây công trình có nảy + bụi; mở game có camera bay vào.
-- [ ] Nhạc ngũ cung phát sau click đầu; vào trận đổi trống, ra trận đổi lại (crossfade).
-- [ ] Thanh trượt Nhạc/Hiệu ứng hoạt động, giữ sau F5; 0 = im lặng.
-- [ ] 10 phút chơi: không lỗi console, heap không tăng liên tục.
+- [x] Thu vàng thấy xu bay vào HUD, số tăng dần, ô HUD nảy.
+- [x] Xây công trình có nảy + bụi; mở game có camera bay vào.
+- [x] Nhạc ngũ cung phát sau click đầu; vào trận đổi trống, ra trận đổi lại (crossfade). *Đã kiểm trạng thái phát (AudioContext running, mode đổi đúng) — chất lượng âm thanh cần user nghe thử.*
+- [x] Thanh trượt Nhạc/Hiệu ứng hoạt động, giữ sau F5; 0 = im lặng.
+- [~] Heap ổn định ~81MB trong 40s (không tăng), DOM 141 node, không sót icon bay. Chưa chạy đủ 10 phút.
+
+## Kết quả thực hiện (2026-10-14)
+- `ui/audio.ts` (kênh nhạc/hiệu ứng, migrate nút tắt cũ), `ui/music.ts` (Karplus–Strong + sáo + pad + reverb; trận: taiko), `ui/juice.ts` (icon bay Bézier bằng rAF, Counter, bump).
+- Icon bay đổi từ Web Animations API sang rAF: tab trình duyệt bị công cụ tự động gắn debugger làm WAAPI đứng yên → rAF chắc chắn hơn và kiểm chứng được.
+- Hit-stop 90ms trong màn đấu khi khắc hệ; camera intro 2.2s (tôn trọng prefers-reduced-motion).
 
 ## Risk Assessment
 - Nhạc tổng hợp nghe "điện tử/rẻ" → âm lượng thấp, nốt thưa, reverb nhẹ; có nút tắt; nếu vẫn tệ, đề xuất user dùng nhạc CC0 (ngoài phạm vi).

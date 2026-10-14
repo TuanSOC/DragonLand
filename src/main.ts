@@ -22,10 +22,15 @@ import { fmtNum } from './ui/format';
 import { setupDevTools } from './ui/devTools';
 import { Panels } from './ui/panels';
 import { icon, type IconName, type IconSize } from './ui/icons';
+import { Counter, flyIcons } from './ui/juice';
+import { music } from './ui/music';
 import { sfx } from './ui/sound';
 import { toast } from './ui/toast';
 
 const $ = (id: string) => document.getElementById(id)!;
+
+/** thời gian camera bay vào lúc mở game (giây) */
+const INTRO_SECONDS = 2.2;
 
 async function boot(): Promise<void> {
   const bar = $('loading-bar');
@@ -101,9 +106,18 @@ async function boot(): Promise<void> {
   const battleUI = new BattleUI(game, battleView, () => {
     mode = 'island';
     document.body.classList.remove('in-battle');
+    music.setMode('island');
   });
 
+  /** Icon vàng/thức ăn bay từ công trình lên ô HUD tương ứng; số lượng icon theo lượng thu. */
+  const flyGain = (kind: 'gold' | 'food', buildingId: number, amount: number) => {
+    const from = world.screenPos(buildingId, camera, renderer.domElement);
+    if (!from) return;
+    flyIcons(kind, from, $(kind).parentElement!, 3 + amount / 15);
+  };
+
   const panels = new Panels(game, {
+    gain: (kind, buildingId, amount) => flyGain(kind, buildingId, amount),
     place(item) {
       placing = { item };
       placement.begin(item.type, item.type === 'habitat' ? item.element : undefined);
@@ -125,21 +139,29 @@ async function boot(): Promise<void> {
       cancelPlacing();
       mode = 'battle';
       document.body.classList.add('in-battle');
+      music.setMode('battle');
       battleUI.start(r);
     },
   });
 
+  const counters = {
+    gold: new Counter($('gold'), game.state.gold, $('gold').parentElement!),
+    gems: new Counter($('gems'), game.state.gems, $('gems').parentElement!),
+    food: new Counter($('food'), game.state.food, $('food').parentElement!),
+  };
   const updateHud = () => {
     const s = game.state;
-    $('gold').textContent = fmtNum(s.gold);
-    $('gems').textContent = fmtNum(s.gems);
-    $('food').textContent = fmtNum(s.food);
+    counters.gold.set(s.gold);
+    counters.gems.set(s.gems);
+    counters.food.set(s.food);
     $('arena').textContent = `${s.arenaWins}/${ARENA.length}`;
     $('dragons').textContent = String(s.dragons.length);
     $('plevel').textContent = String(s.playerLevel);
     $('xpfill').style.width = `${(s.xp / xpToNext(s.playerLevel)) * 100}%`;
     $('plevel').parentElement!.title = `Cấp ${s.playerLevel} — ${s.xp}/${xpToNext(s.playerLevel)} XP`;
   };
+
+  window.addEventListener('pointerdown', () => music.setMode(mode === 'battle' ? 'battle' : 'island'), { once: true });
 
   setupDevTools(game, panels, { flyNow: () => world.herd.flyNow(), setHour: (h) => dayNight.setHour(h) });
 
@@ -160,7 +182,10 @@ async function boot(): Promise<void> {
     for (const b of game.state.buildings) {
       if (b.type !== 'habitat') continue;
       const g = Math.floor(habitatGold(game.state, b, now));
-      if (g >= 1) world.floatText(b.id, `+${fmtNum(g)} 💰`);
+      if (g >= 1) {
+        world.floatText(b.id, `+${fmtNum(g)} 💰`);
+        flyGain('gold', b.id, g);
+      }
     }
     const got = collectAllGold(game.state, now);
     if (got > 0) {
@@ -233,7 +258,10 @@ async function boot(): Promise<void> {
       const hb = game.state.buildings.find((b) => b.id === coinOf);
       if (hb?.type === 'habitat') {
         const g = Math.floor(habitatGold(game.state, hb, game.now()));
-        if (game.act((s, now) => collectGold(s, hb, now), { quiet: true, sfx: 'coin' })) world.floatText(hb.id, `+${fmtNum(g)} 💰`);
+        if (game.act((s, now) => collectGold(s, hb, now), { quiet: true, sfx: 'coin' })) {
+          world.floatText(hb.id, `+${fmtNum(g)} 💰`);
+          flyGain('gold', hb.id, g);
+        }
       }
       return;
     }
@@ -282,9 +310,27 @@ async function boot(): Promise<void> {
   // dev: số đo hiệu năng đọc qua window.__perf
   const perf = { cpu: 0, update: 0, calls: 0, tris: 0 };
   if (location.search.includes('dev')) (window as unknown as { __perf: typeof perf }).__perf = perf;
+  // camera bay vào đảo lúc mở game (bỏ qua nếu người dùng chọn giảm chuyển động)
+  const intro = {
+    t: matchMedia('(prefers-reduced-motion: reduce)').matches ? INTRO_SECONDS : 0,
+    from: new THREE.Vector3(48, 62, 78),
+    to: camera.position.clone(),
+  };
+  if (intro.t < INTRO_SECONDS) {
+    camera.position.copy(intro.from);
+    controls.enabled = false;
+  }
   renderer.setAnimationLoop(() => {
     const f0 = performance.now();
     const dt = Math.min(clock.getDelta(), 0.1);
+    if (intro.t < INTRO_SECONDS) {
+      intro.t += dt;
+      const k = 1 - Math.pow(1 - Math.min(1, intro.t / INTRO_SECONDS), 3); // chậm dần
+      camera.position.lerpVectors(intro.from, intro.to, k);
+      camera.lookAt(controls.target);
+      if (intro.t >= INTRO_SECONDS) controls.enabled = true;
+    }
+    for (const c of Object.values(counters)) c.update(dt);
     const t = clock.elapsedTime;
     const now = game.now();
     slowTimer += dt;
@@ -292,7 +338,7 @@ async function boot(): Promise<void> {
     if (slowTick) slowTimer = 0;
 
     if (mode === 'island') {
-      controls.update();
+      if (controls.enabled) controls.update();
       // không cho kéo camera ra quá xa đảo
       controls.target.clampLength(0, 16);
       const u0 = performance.now();

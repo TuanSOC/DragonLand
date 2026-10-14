@@ -28,6 +28,8 @@ export class BattleView {
   private at: Record<Side, THREE.Vector3> = { player: SPOT.player.clone(), enemy: SPOT.enemy.clone() };
   private tweens: Tween[] = [];
   private time = 0;
+  /** thời gian còn "khựng" (hit-stop) */
+  private freeze = 0;
   private seaMat = seaMaterial();
   private particles: ParticleSystem;
   private camBase = new THREE.Vector3(0, 4.6, 11);
@@ -153,8 +155,11 @@ export class BattleView {
       defender.play(ev.fainted ? 'death' : 'hit');
       await this.tween(0.2, (p) => attacker.root.position.lerpVectors(from, to, 0.12 * (1 - p)));
     }
-    // đòn khắc hệ: rung camera
-    if (ev.mult > 1) void this.shake(0.3, 0.18);
+    // đòn khắc hệ: khựng hình + rung camera
+    if (ev.mult > 1) {
+      this.freeze = 0.09;
+      void this.shake(0.3, 0.18);
+    }
     // rung nhẹ khi trúng đòn
     const base = defender.root.position.clone();
     await this.tween(0.3, (p) => {
@@ -184,6 +189,10 @@ export class BattleView {
   }
 
   update(dt: number): void {
+    if (this.freeze > 0) {
+      this.freeze -= dt;
+      dt = 0; // đứng hình trong chốc lát cho đòn "nặng" hơn
+    }
     this.time += dt;
     this.seaMat.uniforms.uTime.value = this.time;
     for (const v of Object.values(this.views)) v?.update(dt, this.time, this.camera);

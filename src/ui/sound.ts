@@ -1,28 +1,9 @@
-// Âm thanh tổng hợp bằng WebAudio (không cần file mp3). Có thể tắt trong Hướng dẫn & Cài đặt.
+// Hiệu ứng âm thanh tổng hợp bằng WebAudio (không cần file mp3). Âm lượng chỉnh ở Hướng dẫn & Cài đặt.
+import { audioCtx, channelOut, getVolume } from './audio';
 export type Sfx = 'click' | 'coin' | 'ok' | 'error' | 'levelup' | 'evolve' | 'hit' | 'super' | 'hatch' | 'win' | 'lose' | 'roar';
 
-const MUTE_KEY = 'dao-rong-muted';
 let ctx: AudioContext | null = null;
-let muted = (() => {
-  try {
-    return localStorage.getItem(MUTE_KEY) === '1';
-  } catch {
-    return false;
-  }
-})();
-
-export function isMuted(): boolean {
-  return muted;
-}
-
-export function setMuted(v: boolean): void {
-  muted = v;
-  try {
-    localStorage.setItem(MUTE_KEY, v ? '1' : '0');
-  } catch {
-    /* bỏ qua */
-  }
-}
+let out: GainNode | null = null;
 
 /** Một nốt: tần số (Hz), bắt đầu sau `at` giây, dài `dur` giây, có thể trượt tần số tới `to`. */
 function note(freq: number, at: number, dur: number, type: OscillatorType = 'triangle', vol = 0.12, to?: number): void {
@@ -36,7 +17,7 @@ function note(freq: number, at: number, dur: number, type: OscillatorType = 'tri
   gain.gain.setValueAtTime(0.0001, t);
   gain.gain.exponentialRampToValueAtTime(vol, t + 0.01);
   gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-  osc.connect(gain).connect(ctx.destination);
+  osc.connect(gain).connect(out!);
   osc.start(t);
   osc.stop(t + dur + 0.02);
 }
@@ -52,18 +33,15 @@ function noise(at: number, dur: number, vol = 0.2): void {
   const gain = ctx.createGain();
   gain.gain.value = vol;
   src.buffer = buf;
-  src.connect(gain).connect(ctx.destination);
+  src.connect(gain).connect(out!);
   src.start(ctx.currentTime + at);
 }
 
 export function sfx(name: Sfx): void {
-  if (muted) return;
-  try {
-    ctx ??= new AudioContext();
-    if (ctx.state === 'suspended') void ctx.resume();
-  } catch {
-    return;
-  }
+  if (getVolume('sfx') <= 0) return;
+  ctx = audioCtx();
+  out = channelOut('sfx');
+  if (!ctx || !out) return;
   switch (name) {
     case 'click':
       note(660, 0, 0.06, 'square', 0.04);

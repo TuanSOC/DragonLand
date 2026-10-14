@@ -156,6 +156,9 @@ interface View {
 export class IslandWorld {
   readonly root = new THREE.Group();
   private views = new Map<number, View>();
+  /** công trình vừa xây đang nảy lên: id → thời gian đã chạy */
+  private pops = new Map<number, number>();
+  private synced = false;
   readonly scenery: IslandScenery;
   readonly particles: ParticleSystem;
   readonly herd: DragonHerd;
@@ -188,8 +191,40 @@ export class IslandWorld {
     return true;
   }
 
+  /** Toạ độ màn hình (px, theo cửa sổ) của công trình — điểm xuất phát cho icon bay. */
+  screenPos(buildingId: number, camera: THREE.Camera, canvas: HTMLCanvasElement): { x: number; y: number } | null {
+    const v = this.views.get(buildingId);
+    if (!v) return null;
+    const p = v.group.position.clone().setY(v.top * 0.6).project(camera);
+    const r = canvas.getBoundingClientRect();
+    return { x: r.left + (p.x * 0.5 + 0.5) * r.width, y: r.top + (-p.y * 0.5 + 0.5) * r.height };
+  }
+
   pickDragon(raycaster: THREE.Raycaster): { id: number; distance: number } | null {
     return this.herd.pick(raycaster);
+  }
+
+  /** Công trình mới: phóng 0 → 1.15 → 1 trong 0.45s, lúc chạm đất tung bụi. */
+  private updatePops(dt: number): void {
+    for (const [id, t0] of this.pops) {
+      const v = this.views.get(id);
+      const t = t0 + dt;
+      if (!v) {
+        this.pops.delete(id);
+        continue;
+      }
+      const k = Math.min(1, t / 0.45);
+      const s = k < 0.7 ? (k / 0.7) * 1.15 : 1.15 - ((k - 0.7) / 0.3) * 0.15;
+      v.group.scale.setScalar(Math.max(0.01, s));
+      if (t0 < 0.3 && t >= 0.3) {
+        const p = v.group.position;
+        for (let i = 0; i < 3; i++) this.particles.burst('dust', new THREE.Vector3(p.x + (Math.random() - 0.5) * 3, 0.1, p.z + (Math.random() - 0.5) * 3), 10);
+      }
+      if (k >= 1) {
+        v.group.scale.setScalar(1);
+        this.pops.delete(id);
+      } else this.pops.set(id, t);
+    }
   }
 
   /** Chữ bay lên trên công trình (ví dụ "+120 💰"). */
@@ -233,6 +268,11 @@ export class IslandWorld {
       if (!v) {
         v = this.createView(b);
         this.views.set(b.id, v);
+        // chỉ nảy với công trình xây mới (không phải lúc nạp game)
+        if (this.synced) {
+          this.pops.set(b.id, 0);
+          v.group.scale.setScalar(0.01);
+        }
       }
       const pos = `${b.x},${b.z}`;
       if (v.pos !== pos) {
@@ -246,6 +286,7 @@ export class IslandWorld {
       }
     }
     this.herd.sync(state);
+    this.synced = true;
   }
 
   private createView(b: Building): View {
@@ -334,6 +375,7 @@ export class IslandWorld {
   update(state: GameState, now: number, dt: number, t: number, camera: THREE.Camera, nightness = 0): void {
     this.scenery.update(dt, t);
     this.ambient.update(dt, t, nightness);
+    this.updatePops(dt);
     this.herd.update(dt, t, camera, nightness > 0.5);
     this.particles.update(dt);
     const toCam = new THREE.Vector3();

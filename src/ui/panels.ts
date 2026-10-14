@@ -5,7 +5,8 @@ import { ARENA } from '../data/arena';
 import { BALANCE, CROPS, FARM_COST, HABITAT_COST } from '../data/balance';
 import { SPECIES, SPECIES_LIST, STAGE_NAMES, stageOf, type SpeciesId } from '../data/dragons';
 import { hasSprite } from '../render/sprites';
-import { isMuted, setMuted, sfx } from './sound';
+import { getVolume, setVolume, type Channel } from './audio';
+import { sfx } from './sound';
 import { BEATS, ELEMENTS, ELEMENT_INFO, type Element } from '../data/elements';
 import type { Game } from '../game';
 import { attacksOf } from '../logic/battle';
@@ -19,6 +20,8 @@ import { h, timerBar } from './dom';
 import { fmtNum, fmtTime } from './format';
 
 export interface PanelHooks {
+  /** vừa thu được tài nguyên từ công trình → hiệu ứng bay vào HUD */
+  gain(kind: 'gold' | 'food', buildingId: number, amount: number): void;
   place(item: ShopItem): void;
   move(buildingId: number): void;
   battle(stage: number, dragonIds: number[]): void;
@@ -164,7 +167,10 @@ export class Panels {
         'div',
         { class: 'row card' },
         h('div', { class: 'grow' }, h('div', { class: 'big', 'data-hab-gold': id }), h('div', { class: 'muted' }, `+${fmtNum(habitatRate(this.s, hb))} vàng/phút`)),
-        h('button', { class: 'btn gold', onclick: () => this.game.act((s, now) => collectGold(s, hb, now), { sfx: 'coin' }) }, '💰 Thu vàng'),
+        h('button', { class: 'btn gold', onclick: () => {
+            const amount = Math.floor(habitatGold(this.s, hb, this.game.now()));
+            if (this.game.act((s, now) => collectGold(s, hb, now), { sfx: 'coin' })) this.hooks.gain('gold', id, amount);
+          } }, '💰 Thu vàng'),
         h('button', { class: 'btn ghost', onclick: () => { this.close(); this.hooks.move(id); } }, '⇄ Di chuyển'),
       ),
       h('h3', {}, `Rồng trong chuồng (${dragons.length}/${HABITAT_CAPACITY})`),
@@ -228,7 +234,9 @@ export class Panels {
           'div',
           { class: 'row' },
           done
-            ? h('button', { class: 'btn food', onclick: () => this.game.act((s, now) => harvest(s, id, now), { sfx: 'coin' }) }, '🧺 Thu hoạch')
+            ? h('button', { class: 'btn food', onclick: () => {
+                if (this.game.act((s, now) => harvest(s, id, now), { sfx: 'coin' })) this.hooks.gain('food', id, crop.food);
+              } }, '🧺 Thu hoạch')
             : this.speedBtn(farm.crop),
           move,
         ),
@@ -514,6 +522,25 @@ export class Panels {
     );
   }
 
+  /** Thanh trượt âm lượng 0–100, lưu ngay khi kéo (0 = tắt). */
+  private volumeSlider(ch: Channel, label: string): HTMLElement {
+    const value = h('b', { class: 'vol-value' }, `${Math.round(getVolume(ch) * 100)}`);
+    const input = h('input', {
+      type: 'range',
+      min: 0,
+      max: 100,
+      value: Math.round(getVolume(ch) * 100),
+      class: 'vol',
+      oninput: (e: Event) => {
+        const v = Number((e.target as HTMLInputElement).value);
+        setVolume(ch, v / 100);
+        value.textContent = String(v);
+      },
+      onchange: () => sfx('click'),
+    });
+    return h('label', { class: 'row vol-row' }, h('span', { class: 'vol-label' }, label), input, value);
+  }
+
   // ───────────── Cài đặt / hướng dẫn ─────────────
   openSettings(): void {
     this.resetArmed = false;
@@ -532,19 +559,8 @@ export class Panels {
           h('li', {}, 'Kéo chuột trái để xoay, chuột phải để di chuyển, cuộn để phóng to.'),
         ),
         h('p', { class: 'muted small' }, 'Game tự lưu trên trình duyệt. Model 3D: Quaternius & Kenney (CC0).'),
-        h(
-          'button',
-          {
-            class: 'btn ghost',
-            onclick: () => {
-              setMuted(!isMuted());
-              sfx('click');
-              this.refresh();
-            },
-          },
-          isMuted() ? 'Âm thanh: Tắt' : 'Âm thanh: Bật',
-        ),
-        ' ',
+        this.volumeSlider('music', 'Nhạc nền'),
+        this.volumeSlider('sfx', 'Hiệu ứng'),
         h(
           'button',
           {
