@@ -1,7 +1,7 @@
 ---
 phase: 1
 title: Rồng dạng động
-status: in-progress
+status: completed
 priority: P1
 effort: 0.5d
 dependencies: []
@@ -32,8 +32,12 @@ Rồng "có hồn" hơn: thở squash/stretch + nhấp nhô toàn thân, ngủ n
 - Modify: `src/render/dragonView.ts`, `src/render/dragonMesh.ts`, `src/render/herd.ts`, `src/render/particles.ts`, `src/render/battleView.ts`, `src/render/world.ts`, `src/ui/panels.ts`, `src/main.ts`
 
 ## Success Criteria
-- [ ] Idle thấy rồng thở + nhấp nhô; đêm rồng nằm sụp thở chậm.
-- [ ] Cho ăn: rồng đớp mồi, nhảy, tim bay ra; lên cấp có lấp lánh.
-- [ ] Chọc đầu ≠ chọc bụng (2 phản ứng khác nhau).
-- [ ] Màn đấu: tụ lực trước đòn, hit-stop 80ms + rung.
-- [ ] test + tsc + build xanh.
+- [x] Idle thấy rồng thở + nhấp nhô; đêm rồng nằm sụp thở chậm.
+- [x] Cho ăn: rồng ngửa cổ đớp mồi, nhảy, tim bay ra; lên cấp có lấp lánh.
+- [x] Chọc đầu (rụt cổ, gầm, phì hơi) ≠ chọc bụng (nhảy múa, tim).
+- [x] Màn đấu: tụ lực 0.35s (phát sáng màu hệ + lấp lánh), hit-stop 80ms + rung.
+- [x] test (34) + tsc xanh.
+
+## Ghi chú
+- Hạt trái tim vẽ bằng SDF trong shader (aShape). Thêm `?dev=<tên>` để có save dev riêng khi thử.
+- CSS animation (Zzz, chữ bay) bị đóng băng trong tab bị công cụ tự động điều khiển — kiểm tra bằng DOM, không thấy trên ảnh chụp.

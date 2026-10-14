@@ -4,7 +4,7 @@ description: >-
   4 module từ yêu cầu user: animation rồng (cho ăn, chọc đầu/bụng, ngủ, tụ lực),
   hệ Sấm + 3 loài, chướng ngại khai hoang + trang trí buff vàng, Sổ rồng khám
   phá + vòng quay hằng ngày
-status: in-progress
+status: pending
 priority: P2
 branch: main
 tags:
@@ -45,7 +45,7 @@ Yêu cầu user (dán trực tiếp, 4 module). Quyết định đã chốt:
 
 | Phase | Name | Status |
 |-------|------|--------|
-| 1 | [Rồng dạng động](./phase-01-r-ng-d-ng-ng.md) | In Progress |
+| 1 | [Rồng dạng động](./phase-01-r-ng-d-ng-ng.md) | Completed |
 | 2 | [Hệ Sấm Sét](./phase-02-h-s-m-s-t.md) | Pending |
 | 3 | [Khai hoang và trang trí](./phase-03-khai-hoang-v-trang-tr.md) | Pending |
 | 4 | [Sổ rồng và vòng quay](./phase-04-s-r-ng-v-v-ng-quay.md) | Pending |
