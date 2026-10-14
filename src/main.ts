@@ -118,6 +118,7 @@ async function boot(): Promise<void> {
 
   const panels = new Panels(game, {
     gain: (kind, buildingId, amount) => flyGain(kind, buildingId, amount),
+    feed: (dragonId, leveled) => world.herd.feed(dragonId, leveled),
     place(item) {
       placing = { item };
       placement.begin(item.type, item.type === 'habitat' ? item.element : undefined);
@@ -269,7 +270,7 @@ async function boot(): Promise<void> {
     const dragon = world.pickDragon(raycaster);
     const bHit = pickBuildingHit();
     if (dragon && (!bHit || dragon.distance <= bHit.distance)) {
-      world.herd.react(dragon.id);
+      world.herd.react(dragon.id, dragon.zone);
       return;
     }
     const id = pickBuilding();

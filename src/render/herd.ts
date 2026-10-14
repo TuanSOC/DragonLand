@@ -7,7 +7,7 @@ import type { Element } from '../data/elements';
 import type { GameState } from '../logic/state';
 import { sfx } from '../ui/sound';
 import { DragonBrain, type BrainEnv, type BrainEvent, type FlightToken } from './behavior';
-import { createDragonView, type DragonLike } from './dragonView';
+import { createDragonView, type DragonLike, type HitZone } from './dragonView';
 import type { ParticleSystem } from './particles';
 
 /** bán kính đi lang thang quanh chuồng */
@@ -23,6 +23,10 @@ interface Entry {
   habitatId: number;
   zzz: CSS2DObject;
   lastState: string;
+  /** lần phản ứng tới: bị chọc đầu / bụng, hoặc đang được cho ăn */
+  reactKind: 'head' | 'body' | 'eat';
+  /** cho ăn mà lên cấp → thêm lấp lánh */
+  leveled: boolean;
 }
 
 export interface HerdWorld {
@@ -77,7 +81,7 @@ export class DragonHerd {
         const a = this.rng() * Math.PI * 2;
         const elements = SPECIES[d.species].elements;
         const brain = new DragonBrain(d.id, elements, this.rng, home.x + Math.cos(a) * 0.8, home.z + Math.sin(a) * 0.8);
-        e = { brain, view: this.makeView(d.species, d.level), sig, elements, habitatId: d.habitatId, zzz: label('zzz', 'Zzz'), lastState: '' };
+        e = { brain, view: this.makeView(d.species, d.level), sig, elements, habitatId: d.habitatId, zzz: label('zzz', 'Zzz'), lastState: '', reactKind: 'body', leveled: false };
         this.attach(e);
         this.entries.set(d.id, e);
       } else if (e.sig !== sig) {
@@ -154,12 +158,29 @@ export class DragonHerd {
         v.play('breathe');
         this.breath(e, 1.2);
         break;
-      case 'react':
-        v.play('react');
-        this.breath(e, 0.9);
-        sfx('roar');
-        this.tooltip(e);
+      case 'react': {
+        const head = new THREE.Vector3(e.brain.x, e.view.height * 0.9, e.brain.z);
+        if (e.reactKind === 'eat') {
+          // ngửa cổ → đớp → vụn thức ăn rơi + tim bay lên
+          v.play('eat');
+          setTimeout(() => this.particles.burst('crumb', v.mouthWorld(new THREE.Vector3()), 10), 380);
+          setTimeout(() => this.particles.burst('heart', head, 6, new THREE.Vector3(0, 1, 0), 0.6), 550);
+          if (e.leveled) setTimeout(() => this.particles.burst('sparkle', head, 30), 600);
+        } else if (e.reactKind === 'head') {
+          // chọc đầu: rụt cổ, gầm gừ, phì hơi thở
+          v.play('flinch');
+          this.breath(e, 0.5);
+          sfx('roar');
+          this.tooltip(e);
+        } else {
+          // chọc bụng: nhảy múa, tim bay
+          v.play('dance');
+          this.particles.burst('heart', head, 5, new THREE.Vector3(0, 1, 0), 0.6);
+          sfx('ok');
+          this.tooltip(e);
+        }
         break;
+      }
       case 'takeoff':
         this.particles.burst('dust', ground, 16);
         break;
@@ -191,22 +212,31 @@ export class DragonHerd {
     setTimeout(() => tip.removeFromParent(), 2000);
   }
 
-  /** Rồng nào bị bấm trúng (gần camera nhất) → id + khoảng cách. */
-  pick(raycaster: THREE.Raycaster): { id: number; distance: number } | null {
-    let best: number | null = null;
-    let bestD = Infinity;
+  /** Rồng nào bị bấm trúng (gần camera nhất) → id + khoảng cách + vùng đầu/thân. */
+  pick(raycaster: THREE.Raycaster): { id: number; distance: number; zone: HitZone } | null {
+    let best: { id: number; distance: number; zone: HitZone } | null = null;
     for (const [id, e] of this.entries) {
-      const d = e.view.pick(raycaster);
-      if (d !== null && d < bestD) {
-        bestD = d;
-        best = id;
-      }
+      const hit = e.view.pick(raycaster);
+      if (hit && (!best || hit.distance < best.distance)) best = { id, ...hit };
     }
-    return best === null ? null : { id: best, distance: bestD };
+    return best;
   }
 
-  react(dragonId: number): void {
-    this.entries.get(dragonId)?.brain.react();
+  /** Người chơi chọc vào rồng (đầu → rụt cổ gầm gừ, thân → nhảy múa). */
+  react(dragonId: number, zone: HitZone = 'body'): void {
+    const e = this.entries.get(dragonId);
+    if (!e) return;
+    e.reactKind = zone;
+    e.brain.react();
+  }
+
+  /** Vừa được cho ăn (từ bảng chuồng): đớp mồi, tim bay; lên cấp thì lấp lánh. */
+  feed(dragonId: number, leveled: boolean): void {
+    const e = this.entries.get(dragonId);
+    if (!e) return;
+    e.reactKind = 'eat';
+    e.leveled = leveled;
+    e.brain.react();
   }
 
   /** Dev: ép một con rồng cất cánh ngay. */

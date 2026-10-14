@@ -22,6 +22,8 @@ import { fmtNum, fmtTime } from './format';
 export interface PanelHooks {
   /** vừa thu được tài nguyên từ công trình → hiệu ứng bay vào HUD */
   gain(kind: 'gold' | 'food', buildingId: number, amount: number): void;
+  /** vừa cho rồng ăn → rồng đớp mồi trên đảo */
+  feed(dragonId: number, leveledUp: boolean): void;
   place(item: ShopItem): void;
   move(buildingId: number): void;
   battle(stage: number, dragonIds: number[]): void;
@@ -201,7 +203,10 @@ export class Panels {
         h('span', { class: 'grow' }),
         max
           ? null
-          : h('button', { class: 'btn food', onclick: () => this.game.act((s, now) => feedDragon(s, d.id, now)) }, `🍖 Cho ăn (${cost})`),
+          : h('button', { class: 'btn food', onclick: () => {
+                const before = d.level;
+                if (this.game.act((s, now) => feedDragon(s, d.id, now))) this.hooks.feed(d.id, d.level > before);
+              } }, `🍖 Cho ăn (${cost})`),
         others.length
           ? h(
             'select',

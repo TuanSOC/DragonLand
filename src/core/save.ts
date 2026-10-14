@@ -1,9 +1,12 @@
 // Lưu/tải game bằng localStorage. Có version để sau này nâng cấp dữ liệu cũ.
 import { createNewGame, SAVE_VERSION, type GameState } from '../logic/state';
 
-/** ?dev=1 dùng save riêng để test thoải mái mà không đụng tiến độ thật */
-const IS_DEV = typeof location !== 'undefined' && new URLSearchParams(location.search).has('dev');
-const KEY = IS_DEV ? 'dao-rong-3d-save-dev' : 'dao-rong-3d-save';
+/**
+ * ?dev=1 dùng save riêng để test thoải mái mà không đụng tiến độ thật.
+ * ?dev=<tên> (vd. ?dev=t1) dùng thêm một save dev riêng nữa — để thử nhiều kịch bản song song.
+ */
+const DEV = typeof location !== 'undefined' ? new URLSearchParams(location.search).get('dev') : null;
+const KEY = DEV === null ? 'dao-rong-3d-save' : `dao-rong-3d-save-dev${DEV && DEV !== '1' ? `-${DEV}` : ''}`;
 
 export function loadGame(now: number): GameState {
   try {

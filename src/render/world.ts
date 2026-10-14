@@ -200,7 +200,7 @@ export class IslandWorld {
     return { x: r.left + (p.x * 0.5 + 0.5) * r.width, y: r.top + (-p.y * 0.5 + 0.5) * r.height };
   }
 
-  pickDragon(raycaster: THREE.Raycaster): { id: number; distance: number } | null {
+  pickDragon(raycaster: THREE.Raycaster): ReturnType<DragonHerd['pick']> {
     return this.herd.pick(raycaster);
   }
 

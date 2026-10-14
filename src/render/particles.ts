@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import type { Element } from '../data/elements';
 
-export type ParticleKind = 'fire' | 'smoke' | 'water' | 'earth' | 'plant' | 'dust' | 'sparkle';
+export type ParticleKind = 'fire' | 'smoke' | 'water' | 'earth' | 'plant' | 'dust' | 'sparkle' | 'heart' | 'crumb';
 
 interface KindSpec {
   additive: boolean;
@@ -15,6 +15,8 @@ interface KindSpec {
   gravity: number; // dương = rơi xuống
   drag: number;
   flutter?: number; // lá bay lượn
+  /** 1 = vẽ hình trái tim thay vì chấm tròn */
+  shape?: number;
 }
 
 const C = (hex: string) => new THREE.Color(hex);
@@ -27,6 +29,8 @@ const KINDS: Record<ParticleKind, KindSpec> = {
   plant: { additive: false, from: C('#c8ff7a'), to: C('#2fa83a'), life: [0.9, 1.4], size: [0.35, 0.3], speed: 5, gravity: 1.5, drag: 1.2, flutter: 3 },
   dust: { additive: false, from: C('#f6e7c6'), to: C('#c9b48a'), life: [0.5, 0.9], size: [0.6, 1.4], speed: 2.6, gravity: -0.3, drag: 2.5 },
   sparkle: { additive: true, from: C('#fff8c0'), to: C('#ffb300'), life: [0.4, 0.8], size: [0.3, 0.05], speed: 2, gravity: -0.5, drag: 1 },
+  heart: { additive: false, from: C('#ff6fae'), to: C('#ff2f7a'), life: [1.0, 1.5], size: [0.95, 0.6], speed: 1.6, gravity: -1.4, drag: 1.5, flutter: 2, shape: 1 },
+  crumb: { additive: false, from: C('#e0a060'), to: C('#8a5a2b'), life: [0.5, 0.8], size: [0.18, 0.14], speed: 3, gravity: 10, drag: 0.4 },
 };
 
 /** Hơi thở theo hệ: [loại hạt chính, loại phụ (hoặc null)] */
@@ -41,11 +45,14 @@ const vertexShader = /* glsl */ `
   attribute float aSize;
   attribute float aAlpha;
   attribute vec3 aColor;
+  attribute float aShape;
   uniform float uScale;
   uniform float uGain;
   varying float vAlpha;
   varying vec3 vColor;
+  varying float vShape;
   void main() {
+    vShape = aShape;
     vAlpha = aAlpha * uGain;
     vColor = aColor;
     vec4 mv = modelViewMatrix * vec4(position, 1.0);
@@ -56,9 +63,19 @@ const vertexShader = /* glsl */ `
 const fragmentShader = /* glsl */ `
   varying float vAlpha;
   varying vec3 vColor;
+  varying float vShape;
   void main() {
     float d = length(gl_PointCoord - 0.5);
     float a = smoothstep(0.5, 0.15, d) * vAlpha;
+    if (vShape > 0.5) {
+      // trái tim (công thức cực của Inigo Quilez), toạ độ y hướng lên
+      vec2 p = (gl_PointCoord - 0.5) * vec2(2.2, -2.2);
+      p.y += 0.3;
+      float ang = abs(atan(p.x, p.y) / 3.141593);
+      float r = length(p);
+      float hd = (13.0 * ang - 22.0 * ang * ang + 10.0 * ang * ang * ang) / (6.0 - 5.0 * ang);
+      a = smoothstep(hd, hd - 0.12, r) * vAlpha;
+    }
     if (a < 0.01) discard;
     gl_FragColor = vec4(vColor, a);
     #include <colorspace_fragment>
@@ -72,6 +89,7 @@ class Layer {
   private col: Float32Array;
   private size: Float32Array;
   private alpha: Float32Array;
+  private shape: Float32Array;
   private vel: Float32Array;
   private life: Float32Array; // còn lại
   private max: Float32Array; // tổng
@@ -84,6 +102,7 @@ class Layer {
     this.col = new Float32Array(capacity * 3);
     this.size = new Float32Array(capacity);
     this.alpha = new Float32Array(capacity);
+    this.shape = new Float32Array(capacity);
     this.vel = new Float32Array(capacity * 3);
     this.life = new Float32Array(capacity);
     this.max = new Float32Array(capacity);
@@ -92,6 +111,7 @@ class Layer {
     geo.setAttribute('aColor', new THREE.BufferAttribute(this.col, 3));
     geo.setAttribute('aSize', new THREE.BufferAttribute(this.size, 1));
     geo.setAttribute('aAlpha', new THREE.BufferAttribute(this.alpha, 1));
+    geo.setAttribute('aShape', new THREE.BufferAttribute(this.shape, 1));
     const mat = new THREE.ShaderMaterial({
       // lớp cộng sáng chồng nhiều hạt dễ "cháy trắng" → giảm độ đậm
       uniforms: { uScale, uGain: { value: additive ? 0.5 : 1 } },
@@ -119,6 +139,7 @@ class Layer {
     this.life[i] = life;
     this.max[i] = life;
     this.kind[i] = spec;
+    this.shape[i] = spec.shape ?? 0;
   }
 
   update(dt: number, t: number): void {
@@ -156,7 +177,7 @@ class Layer {
       this.alpha[i] = Math.min(1, (1 - k) * 1.6) * Math.min(1, k * 8 + 0.2);
     }
     const g = this.points.geometry;
-    for (const name of ['position', 'aColor', 'aSize', 'aAlpha']) g.getAttribute(name).needsUpdate = true;
+    for (const name of ['position', 'aColor', 'aSize', 'aAlpha', 'aShape']) g.getAttribute(name).needsUpdate = true;
   }
 }
 

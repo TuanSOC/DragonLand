@@ -20,6 +20,11 @@ const SPOT: Record<Side, THREE.Vector3> = {
   enemy: new THREE.Vector3(3.2, 1.6, -0.8),
 };
 
+/** thời gian tụ lực trước mỗi đòn */
+const CHARGE_SECONDS = 0.35;
+/** khựng hình khi trúng đòn khắc hệ */
+const HIT_STOP_SECONDS = 0.08;
+
 export class BattleView {
   readonly scene = new THREE.Scene();
   readonly camera: THREE.PerspectiveCamera;
@@ -114,6 +119,13 @@ export class BattleView {
     // đạn bay từ ngực rồng: rồng 3D gốc đã ở giữa thân, sprite thì gốc ở chân
     const chest = (v: DragonLike) => new THREE.Vector3(0, v.flying ? 0.4 : 1.6, 0);
 
+    // tụ lực: rồng co mình, phát sáng màu hệ, hạt lấp lánh tụ quanh thân
+    const glowColor = new THREE.Color(attack.element === 'neutral' ? '#ffffff' : ELEMENT_INFO[attack.element].color);
+    attacker.play('charge');
+    const core = from.clone().add(chest(attacker));
+    this.particles.burst('sparkle', core, 14);
+    await this.tween(CHARGE_SECONDS, (p) => attacker.setGlow(glowColor, p * 0.55));
+    attacker.setGlow(glowColor, 0);
     attacker.play(attack.power >= 1.6 ? 'attack2' : 'attack');
     if (attack.element === 'neutral') {
       // húc: lao thẳng vào đối thủ
@@ -157,7 +169,7 @@ export class BattleView {
     }
     // đòn khắc hệ: khựng hình + rung camera
     if (ev.mult > 1) {
-      this.freeze = 0.09;
+      this.freeze = HIT_STOP_SECONDS;
       void this.shake(0.3, 0.18);
     }
     // rung nhẹ khi trúng đòn

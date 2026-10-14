@@ -6,7 +6,24 @@ import { getAnimations, spawn, tintByName, type ModelKey } from './assets';
 import { DragonMesh, type FlapMode } from './dragonMesh';
 import { alphaAt, blobShadow, getSprite } from './sprites';
 
-export type AnimName = 'idle' | 'attack' | 'attack2' | 'hit' | 'death' | 'happy' | 'roar' | 'breathe' | 'react' | 'sleep';
+export type AnimName =
+  | 'idle' | 'attack' | 'attack2' | 'hit' | 'death' | 'happy' | 'roar' | 'breathe' | 'react' | 'sleep'
+  /** đớp mồi khi được cho ăn */
+  | 'eat'
+  /** bị chọc đầu: rụt cổ, run */
+  | 'flinch'
+  /** bị chọc bụng: nhảy múa */
+  | 'dance'
+  /** tụ lực trước khi ra đòn (màn đấu) */
+  | 'charge';
+
+/** Vùng bị bấm trúng trên thân rồng */
+export type HitZone = 'head' | 'body';
+
+export interface PickHit {
+  distance: number;
+  zone: HitZone;
+}
 
 /** Giao diện chung cho mọi kiểu hiển thị rồng. */
 export interface DragonLike {
@@ -21,8 +38,10 @@ export interface DragonLike {
   /** quay mặt theo hướng di chuyển (dx, dz); camRight để biết trái/phải trên màn hình */
   face(dx: number, dz: number, camRight: THREE.Vector3): void;
   mouthWorld(out: THREE.Vector3): THREE.Vector3;
-  /** khoảng cách nếu tia chuột trúng phần nhìn thấy của rồng, không thì null */
-  pick(raycaster: THREE.Raycaster): number | null;
+  /** trúng phần nhìn thấy của rồng → khoảng cách + vùng (đầu/thân), không thì null */
+  pick(raycaster: THREE.Raycaster): PickHit | null;
+  /** phát sáng màu hệ khi tụ lực (k = 0 tắt) */
+  setGlow(color: THREE.Color, k: number): void;
   dispose(): void;
 }
 
@@ -47,7 +66,11 @@ const QUATERNIUS_B: Partial<Record<AnimName, string>> = {
 };
 
 /** hành vi mới không có clip riêng → mượn clip gần giống */
-const GLB_ALIAS: Partial<Record<AnimName, AnimName>> = { roar: 'attack', breathe: 'attack2', react: 'happy', sleep: 'idle' };
+const GLB_ALIAS: Partial<Record<AnimName, AnimName>> = {
+  roar: 'attack', breathe: 'attack2', react: 'happy', sleep: 'idle', eat: 'attack', flinch: 'hit', dance: 'happy', charge: 'idle',
+};
+
+const _v = new THREE.Vector3();
 
 /** sải cánh (đơn vị thế giới) theo giai đoạn */
 const STAGE_SIZE = [2.0, 2.7, 3.4];
@@ -128,8 +151,15 @@ class GlbDragonView implements DragonLike {
     return this.root.localToWorld(out.set(0, this.height * 0.55, this.size * 0.45));
   }
 
-  pick(raycaster: THREE.Raycaster): number | null {
-    return raycaster.intersectObject(this.root, true)[0]?.distance ?? null;
+  pick(raycaster: THREE.Raycaster): PickHit | null {
+    const hit = raycaster.intersectObject(this.root, true)[0];
+    if (!hit) return null;
+    const localY = hit.point.y - this.root.getWorldPosition(_v).y;
+    return { distance: hit.distance, zone: localY > this.height * 0.55 ? 'head' : 'body' };
+  }
+
+  setGlow(): void {
+    /* model 3D: không có hiệu ứng phát sáng */
   }
 
   dispose(): void {
@@ -155,6 +185,7 @@ class SpriteDragonView implements DragonLike {
   private shadow: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
   private anim: AnimName = 'idle';
   private t = 0;
+  private phase = Math.random() * Math.PI * 2;
 
   constructor(private id: string, size: number, flip: boolean) {
     const s = getSprite(id)!;
@@ -193,19 +224,30 @@ class SpriteDragonView implements DragonLike {
     return this.body.localToWorld(this.mesh.mouthLocal(out));
   }
 
-  pick(raycaster: THREE.Raycaster): number | null {
+  pick(raycaster: THREE.Raycaster): PickHit | null {
     const hit = raycaster.intersectObject(this.mesh, false)[0];
     if (!hit?.uv) return null;
     const u = this.mesh.flipped ? 1 - hit.uv.x : hit.uv.x;
-    return alphaAt(this.id, u, hit.uv.y) > 0.3 ? hit.distance : null;
+    if (alphaAt(this.id, u, hit.uv.y) <= 0.3) return null;
+    // vùng đầu: quanh miệng (theo meta), còn lại là thân
+    const [mu, mv] = this.mesh.meta.mouth;
+    const head = hit.uv.y >= mv - 0.12 && Math.abs(u - mu) < 0.22;
+    return { distance: hit.distance, zone: head ? 'head' : 'body' };
+  }
+
+  setGlow(color: THREE.Color, k: number): void {
+    this.mesh.setGlow(color, k);
   }
 
   update(dt: number, time: number, camera: THREE.Camera): void {
     this.t += dt;
     const u = this.mesh.u;
-    let sx = 1;
-    let sy = 1;
-    let y = 0;
+    const h = this.mesh.h;
+    // thở + nhấp nhô nền (squash & stretch), lệch pha theo từng con
+    const breath = Math.sin(time * 2.1 + this.phase);
+    let sx = 1 - breath * 0.012;
+    let sy = 1 + breath * 0.025;
+    let y = Math.abs(Math.sin(time * 1.05 + this.phase)) * 0.02 * h;
     let x = 0;
     u.uFlash.value = 0;
     u.uOpacity.value = 1;
@@ -252,9 +294,56 @@ class SpriteDragonView implements DragonLike {
         y = -p * this.mesh.h * 0.15;
         break;
       }
-      case 'sleep':
-        sy = 0.95;
+      case 'sleep': {
+        // nằm sụp xuống, thở chậm và sâu
+        const slow = Math.sin(time * 1.8 + this.phase);
+        sy = 0.86 + slow * 0.03;
+        sx = 1.05 - slow * 0.015;
+        y = 0;
         break;
+      }
+      case 'eat': {
+        // ngửa cổ (nghiêng ra sau) → đớp xuống → nảy lên vui sướng
+        const p = done(1.1);
+        const back = this.mesh.flipped ? -1 : 1; // nghiêng về phía lưng
+        if (p < 0.3) this.mesh.tilt = -back * 0.22 * (p / 0.3);
+        else if (p < 0.5) {
+          const k = (p - 0.3) / 0.2;
+          this.mesh.tilt = -back * 0.22 * (1 - k) + back * 0.12 * k;
+          sy = 1 - k * 0.1;
+          sx = 1 + k * 0.06;
+        } else {
+          const k = (p - 0.5) / 0.5;
+          this.mesh.tilt = back * 0.12 * (1 - k);
+          y = Math.abs(Math.sin(k * Math.PI * 2)) * 0.22 * h * (1 - k * 0.5);
+        }
+        break;
+      }
+      case 'flinch': {
+        // rụt cổ: thu nhỏ + run, rồi bung ra
+        const p = done(0.7);
+        const k = p < 0.25 ? p / 0.25 : 1 - (p - 0.25) / 0.75;
+        sy = 1 - k * 0.12;
+        sx = 1 + k * 0.05;
+        x = Math.sin(this.t * 60) * 0.02 * k * this.mesh.w;
+        break;
+      }
+      case 'dance': {
+        // hai cú nhảy + lắc trái phải
+        const p = done(1.2);
+        y = Math.abs(Math.sin(p * Math.PI * 2)) * 0.25 * h;
+        this.mesh.tilt = Math.sin(p * Math.PI * 4) * 0.15;
+        sx = sy = 1 + Math.abs(Math.sin(p * Math.PI * 2)) * 0.05;
+        break;
+      }
+      case 'charge': {
+        // tụ lực: co mình lại, run nhẹ (màu sáng do battleView điều khiển)
+        const p = Math.min(1, this.t / 0.35);
+        sy = 1 - p * 0.08;
+        sx = 1 + p * 0.05;
+        x = Math.sin(this.t * 70) * 0.012 * p * this.mesh.w;
+        break;
+      }
     }
     this.body.scale.set(sx, sy, 1);
     this.body.position.set(x, y, 0);
