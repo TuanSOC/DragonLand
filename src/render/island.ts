@@ -70,6 +70,8 @@ export function seaMaterial(): THREE.ShaderMaterial {
       uMid: { value: new THREE.Color('#22c3ea') },
       uDeep: { value: new THREE.Color('#1478d4') },
       uR: { value: ISLAND_RADIUS },
+      uTint: { value: new THREE.Color(1, 1, 1) },
+      uSparkle: { value: 0.22 },
     },
     vertexShader: /* glsl */ `
       varying vec2 vPos;
@@ -79,6 +81,7 @@ export function seaMaterial(): THREE.ShaderMaterial {
       }`,
     fragmentShader: /* glsl */ `
       uniform float uTime; uniform vec3 uShallow; uniform vec3 uMid; uniform vec3 uDeep; uniform float uR;
+      uniform vec3 uTint; uniform float uSparkle;
       varying vec2 vPos;
       void main() {
         float d = length(vPos);
@@ -87,16 +90,19 @@ export function seaMaterial(): THREE.ShaderMaterial {
         // gợn sóng lấp lánh
         float w = sin(vPos.x * 0.9 + uTime * 1.3) * sin(vPos.y * 0.8 - uTime * 1.1)
                 + sin((vPos.x + vPos.y) * 0.45 + uTime * 0.7);
-        col += smoothstep(1.35, 1.9, w) * 0.22;
+        col = col * uTint + smoothstep(1.35, 1.9, w) * uSparkle;
         gl_FragColor = vec4(col, 1.0);
         #include <colorspace_fragment>
       }`,
   });
 }
 
+/** Vật liệu mây dùng chung — ngày–đêm chỉnh độ tự sáng. */
+export const cloudMaterial = new THREE.MeshLambertMaterial({ color: '#ffffff', emissive: '#dff4ff', emissiveIntensity: 0.35 });
+
 function cloud(rnd: () => number): THREE.Group {
   const g = new THREE.Group();
-  const mat = new THREE.MeshLambertMaterial({ color: '#ffffff', emissive: '#dff4ff', emissiveIntensity: 0.35 });
+  const mat = cloudMaterial;
   const n = 4 + Math.floor(rnd() * 3);
   for (let i = 0; i < n; i++) {
     const s = new THREE.Mesh(new THREE.SphereGeometry(1.6 + rnd() * 1.6, 14, 10), mat);
@@ -104,6 +110,26 @@ function cloud(rnd: () => number): THREE.Group {
     s.scale.y = 0.75;
     g.add(s);
   }
+  return g;
+}
+
+/** Đèn lồng đỏ trên cột gỗ (dùng khi chưa có ảnh vẽ). Phần đèn tên 'lanternLamp' để ngày–đêm cho phát sáng. */
+function proceduralLantern(size: number): THREE.Group {
+  const g = new THREE.Group();
+  const wood = new THREE.MeshLambertMaterial({ color: '#6e4120' });
+  const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.07, size, 6), wood);
+  pole.position.y = size / 2;
+  const arm = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.06, 0.06), wood);
+  arm.position.set(0.22, size * 0.95, 0);
+  const lamp = new THREE.Mesh(
+    new THREE.SphereGeometry(0.22, 12, 10),
+    new THREE.MeshStandardMaterial({ color: '#e0321e', emissive: '#ff7a2a', emissiveIntensity: 0.2, roughness: 0.6 }),
+  );
+  lamp.name = 'lanternLamp';
+  lamp.scale.y = 1.25;
+  lamp.position.set(0.42, size * 0.95 - 0.32, 0);
+  g.add(pole, arm, lamp);
+  g.traverse((o) => ((o as THREE.Mesh).castShadow = true));
   return g;
 }
 
@@ -121,6 +147,7 @@ function decor(kind: DecorKind, size: number): THREE.Object3D {
     g.add(blobShadow(size * 0.28), sprite);
     return g;
   }
+  if (kind === 'lantern') return proceduralLantern(size);
   const glb: Record<DecorKind, [ModelKey, 'height' | 'max']> = {
     sakura: ['tree', 'height'], gold: ['autumnTree', 'height'], palm: ['tree2', 'height'],
     mushrooms: ['bushBerries', 'max'], flowers: ['flowers', 'max'], lantern: ['bushFlowers', 'max'], rocks: ['rock', 'max'],
@@ -135,7 +162,13 @@ function decor(kind: DecorKind, size: number): THREE.Object3D {
 }
 
 export class IslandScenery {
-  private sea: THREE.ShaderMaterial;
+  readonly sea: THREE.ShaderMaterial;
+  /** vị trí (mặt đất) các cây anh đào, mọi cây, đèn lồng — cho cánh hoa, đom đóm, ánh đèn */
+  readonly sakuraSpots: THREE.Vector3[] = [];
+  readonly treeSpots: THREE.Vector3[] = [];
+  readonly lanternSpots: THREE.Vector3[] = [];
+  /** phần đèn lồng (mesh) để bật sáng ban đêm */
+  readonly lanternLamps: THREE.Mesh[] = [];
   private foam: THREE.Mesh;
   private clouds: THREE.Group[] = [];
 
@@ -170,6 +203,7 @@ export class IslandScenery {
       ringGeo,
       new THREE.MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.5, depthWrite: false }),
     );
+    (this.foam.material as THREE.MeshBasicMaterial).userData.unlit = true; // tối theo giờ
     this.foam.rotation.x = -Math.PI / 2;
     this.foam.position.y = -0.85;
     scene.add(this.foam);
@@ -189,6 +223,14 @@ export class IslandScenery {
       obj.position.set(Math.cos(a) * r, 0, Math.sin(a) * r);
       obj.rotation.y = rnd() * Math.PI * 2;
       scene.add(obj);
+      const spot = obj.position.clone();
+      if (kind === 'sakura') this.sakuraSpots.push(spot);
+      if (kind === 'sakura' || kind === 'gold' || kind === 'palm') this.treeSpots.push(spot);
+      if (kind === 'lantern') {
+        this.lanternSpots.push(spot);
+        const lamp = obj.getObjectByName('lanternLamp') as THREE.Mesh | undefined;
+        if (lamp) this.lanternLamps.push(lamp);
+      }
     }
 
     // đảo nhỏ xung quanh

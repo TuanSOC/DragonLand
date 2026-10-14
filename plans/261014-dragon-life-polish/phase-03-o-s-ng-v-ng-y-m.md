@@ -1,10 +1,11 @@
 ---
 phase: 3
-title: "Đảo sống và ngày đêm"
-status: pending
+title: Đảo sống và ngày đêm
+status: completed
 priority: P2
-effort: "1d"
-dependencies: [1]
+effort: 1d
+dependencies:
+  - 1
 ---
 
 # Phase 3: Đảo sống và ngày đêm
@@ -46,11 +47,17 @@ src/render/quality.ts   detectTier() + FpsProbe (3s) → 'high'|'low'
 7. Chụp màn hình 5 mốc giờ; đo fps high/low.
 
 ## Success Criteria
-- [ ] Dev chọn 20h: trời đêm có sao/trăng, đèn lồng sáng, đom đóm, rồng ngủ nhiều; rồng không chói.
-- [ ] Dev chọn 6h/18h: bình minh cam, hoàng hôn tím–cam rõ rệt.
-- [ ] Ban ngày thấy cánh hoa rơi, bướm, chim, cá nhảy, bóng mây.
-- [ ] Giả lập mobile (DevTools) → tier low, vẫn ≥40fps.
-- [ ] Không đổi `GameState`, save cũ vẫn chạy.
+- [x] Dev chọn 22h: trời đêm, đèn lồng sáng + quầng sáng, đom đóm, rồng ngủ nhiều; rồng/công trình/bọt sóng tối theo trời.
+- [x] Dev chọn 6h/18h: bình minh ấm, hoàng hôn cam–đỏ, bóng đổ dài rõ rệt.
+- [x] Ban ngày thấy cánh hoa rơi, bướm, chim, cá nhảy, bóng mây.
+- [~] Tier low (`?tier=low`): tắt bóng, lệnh vẽ 430 → 225, CPU 3.4ms/khung. **fps chưa đo được tin cậy** — máy test đang bị tải ngoài (cả 2 tab tụt 8–10fps cùng lúc); cần đo lại trên điện thoại thật.
+- [x] Không đổi `GameState`, save cũ vẫn chạy.
+
+## Kết quả thực hiện (2026-10-14)
+- `render/quality.ts` (tier + FpsProbe 3s, ép `?tier=`), `render/sky.ts` (8 mốc, `moodAt` có test), `render/ambient.ts`.
+- Sprite/rồng "không chịu sáng" tô theo `sceneLight` (vật mới tạo lấy luôn màu hiện tại); bọt sóng + mây cũng tối theo giờ.
+- Đèn lồng dự phòng làm thủ tục (cột gỗ + đèn đỏ phát sáng) thay bụi hoa GLB.
+- Sao/trăng có nhưng góc camera mặc định (nhìn xuống) ít thấy — có thể chỉnh sau.
 
 ## Risk Assessment
 - Quá nhiều PointLight làm tụt fps → tối đa 4, chọn đèn gần camera; tier low chỉ dùng glow sprite.

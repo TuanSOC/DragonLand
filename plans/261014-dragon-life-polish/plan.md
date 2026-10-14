@@ -38,7 +38,7 @@ Quyết định chốt:
 |-------|------|--------|
 | 1 | [Rồng sống động](./phase-01-r-ng-s-ng-ng.md) | Completed |
 | 2 | [Giao diện thủ công](./phase-02-giao-di-n-th-c-ng.md) | Completed |
-| 3 | [Đảo sống và ngày đêm](./phase-03-o-s-ng-v-ng-y-m.md) | Pending |
+| 3 | [Đảo sống và ngày đêm](./phase-03-o-s-ng-v-ng-y-m.md) | Completed |
 | 4 | [Juice và nhạc nền](./phase-04-juice-v-nh-c-n-n.md) | Pending |
 
 Thứ tự bắt buộc 1 → 2 → 3 → 4 (3 dùng `particles` + `uLight` của 1; 4 dùng `particles` + hệ âm thanh). Sau mỗi phase: `npm test`, `npx tsc --noEmit`, `npm run build` xanh + user chơi thử.

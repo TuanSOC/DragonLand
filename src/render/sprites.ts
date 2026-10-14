@@ -77,6 +77,12 @@ export function alphaAt(id: string, u: number, v: number): number {
 }
 
 /**
+ * Màu ánh sáng hiện tại cho mọi thứ "không chịu sáng" (sprite, rồng tranh vẽ).
+ * Ngày–đêm (sky.ts) cập nhật màu này; vật mới tạo lấy luôn màu này để không bị chói ban đêm.
+ */
+export const sceneLight = new THREE.Color(1, 1, 1);
+
+/**
  * Tạo sprite cao `height` đơn vị, gốc ở chân (giữa-dưới).
  * @param anchorY 0 = chân sprite chạm đất; >0 để phần đáy (ví dụ nền chuồng) lún xuống dưới mặt đất một chút
  */
@@ -96,6 +102,8 @@ export function makeSprite(
     map.needsUpdate = true;
   }
   const mat = new THREE.SpriteMaterial({ map, transparent: true, alphaTest: 0.08, depthWrite: true });
+  mat.color.copy(sceneLight);
+  mat.userData.unlit = true;
   const sprite = new THREE.Sprite(mat);
   sprite.center.set(0.5, opts.anchorY ?? 0);
   // byWidth: `height` là chiều rộng (công trình vừa ô lưới); byMax: `height` là cạnh lớn nhất (rồng sải cánh rộng)

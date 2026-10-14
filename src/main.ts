@@ -15,6 +15,8 @@ import { loadSprites } from './render/sprites';
 import { BattleView } from './render/battleView';
 import { Placement } from './render/placement';
 import { IslandWorld } from './render/world';
+import { DayNight } from './render/sky';
+import { detectTier, FpsProbe } from './render/quality';
 import { BattleUI } from './ui/battleUI';
 import { fmtNum } from './ui/format';
 import { setupDevTools } from './ui/devTools';
@@ -24,13 +26,6 @@ import { sfx } from './ui/sound';
 import { toast } from './ui/toast';
 
 const $ = (id: string) => document.getElementById(id)!;
-
-/** Tạm thời: đêm theo giờ máy (phase 3 sẽ thay bằng chu kỳ ngày–đêm đầy đủ). Cập nhật mỗi 0.25s. */
-let night = false;
-function refreshNight(): void {
-  const h = new Date().getHours();
-  night = h >= 19 || h < 6;
-}
 
 async function boot(): Promise<void> {
   const bar = $('loading-bar');
@@ -46,7 +41,9 @@ async function boot(): Promise<void> {
 
   // ── Renderer ──
   const renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  // hạng đồ hoạ: máy yếu / điện thoại tắt bóng đổ, giảm độ phân giải và số hạt
+  const tier = detectTier();
+  renderer.setPixelRatio(tier === 'high' ? Math.min(window.devicePixelRatio, 2) : 1);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;
   app.appendChild(renderer.domElement);
@@ -66,16 +63,25 @@ async function boot(): Promise<void> {
   controls.maxPolarAngle = 1.2;
   controls.screenSpacePanning = false;
 
-  scene.add(new THREE.HemisphereLight('#ffffff', '#5a7a3a', 1.5));
+  const hemi = new THREE.HemisphereLight('#ffffff', '#5a7a3a', 1.5);
+  scene.add(hemi);
   const sun = new THREE.DirectionalLight('#fff3dc', 2.6);
   sun.position.set(20, 35, 12);
-  sun.castShadow = true;
+  sun.castShadow = tier === 'high';
   sun.shadow.mapSize.set(2048, 2048);
   Object.assign(sun.shadow.camera, { left: -26, right: 26, top: 26, bottom: -26, near: 1, far: 90 });
   sun.shadow.bias = -0.0005;
   scene.add(sun);
 
-  const world = new IslandWorld(scene);
+  const world = new IslandWorld(scene, tier);
+  const dayNight = new DayNight(scene, sun, hemi, world.scenery, tier);
+  dayNight.update();
+  // 3 giây đầu chạy không nổi → hạ xuống hạng thấp (tắt bóng, độ phân giải 1x)
+  const probe = new FpsProbe(() => {
+    sun.castShadow = false;
+    renderer.setPixelRatio(1);
+    resize();
+  });
   const placement = new Placement(scene);
   const battleView = new BattleView(1);
   let mode: 'island' | 'battle' = 'island';
@@ -135,7 +141,7 @@ async function boot(): Promise<void> {
     $('plevel').parentElement!.title = `Cấp ${s.playerLevel} — ${s.xp}/${xpToNext(s.playerLevel)} XP`;
   };
 
-  setupDevTools(game, panels, { flyNow: () => world.herd.flyNow() });
+  setupDevTools(game, panels, { flyNow: () => world.herd.flyNow(), setHour: (h) => dayNight.setHour(h) });
 
   game.onChange(() => {
     world.sync(game.state);
@@ -290,7 +296,7 @@ async function boot(): Promise<void> {
       // không cho kéo camera ra quá xa đảo
       controls.target.clampLength(0, 16);
       const u0 = performance.now();
-      world.update(game.state, now, dt, t, camera, night);
+      world.update(game.state, now, dt, t, camera, dayNight.nightness);
       perf.update = perf.update * 0.9 + (performance.now() - u0) * 0.1;
       if (slowTick) world.updateLabels(game.state, now);
       renderer.render(scene, camera);
@@ -299,8 +305,9 @@ async function boot(): Promise<void> {
       battleView.update(dt);
       renderer.render(battleView.scene, battleView.camera);
     }
+    probe.tick(dt);
     if (slowTick) {
-      refreshNight();
+      dayNight.update();
       panels.tick();
       updateHud();
     }

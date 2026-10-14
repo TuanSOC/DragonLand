@@ -18,7 +18,7 @@ function allTimers(s: GameState): Timer[] {
   return list;
 }
 
-export function setupDevTools(game: Game, panels: Panels, hooks: { flyNow(): void }): void {
+export function setupDevTools(game: Game, panels: Panels, hooks: { flyNow(): void; setHour(h: number | null): void }): void {
   if (!new URLSearchParams(location.search).has('dev')) return;
   const btn = h('button', { id: 'btn-dev', title: 'Dev tools' }, '🛠');
   document.body.appendChild(btn);
@@ -48,6 +48,9 @@ export function setupDevTools(game: Game, panels: Panels, hooks: { flyNow(): voi
           addXp(s, xpToNext(s.playerLevel) - s.xp);
         }),
         h('button', { class: 'btn ghost', onclick: () => { hooks.flyNow(); panels.close(); } }, '🕊 Gọi 1 rồng bay'),
+        ...([['🌅 6h', 6], ['☀️ 12h', 12], ['🌇 18h', 18.6], ['🌆 19h30', 19.6], ['🌙 22h', 22], ['🕐 Giờ thật', null]] as [string, number | null][]).map(([label, hr]) =>
+          h('button', { class: 'btn ghost', onclick: () => hooks.setHour(hr) }, label),
+        ),
         action('🐉 +6 rồng (test hiệu năng)', (s) => {
           // bỏ qua giới hạn chuồng — chỉ để đo fps trên save dev
           const homes = s.buildings.filter((b) => b.type === 'habitat');

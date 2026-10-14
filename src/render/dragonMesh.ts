@@ -2,6 +2,7 @@
 // Luôn đứng thẳng và quay mặt về camera quanh trục Y.
 import * as THREE from 'three';
 import type { SpriteMeta } from '../data/spriteMeta';
+import { sceneLight } from './sprites';
 
 export type FlapMode = 'rest' | 'idle' | 'fly';
 
@@ -83,7 +84,7 @@ export class DragonMesh extends THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMate
         uFlip: { value: 0 },
         uFlash: { value: 0 },
         uOpacity: { value: 1 },
-        uLight: { value: new THREE.Color(1, 1, 1) },
+        uLight: { value: sceneLight.clone() },
         uBodyU: { value: meta.bodyU },
         uWingInner: { value: meta.wingInner },
         uWingTop: { value: meta.wingTop },
@@ -94,6 +95,7 @@ export class DragonMesh extends THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMate
       depthWrite: true,
       side: THREE.DoubleSide,
     });
+    mat.userData.unlitUniform = true; // sky.ts cập nhật uLight theo giờ
     super(SHARED_GEO, mat);
     this.w = width;
     this.h = height;

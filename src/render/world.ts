@@ -18,7 +18,9 @@ import {
 import { fmtTime } from '../ui/format';
 import { setRich } from '../ui/icons';
 import { spawn, tintAll, tintByName } from './assets';
+import { Ambient } from './ambient';
 import { DragonHerd } from './herd';
+import { QUALITY, type Tier } from './quality';
 import { IslandScenery, islandRadius } from './island';
 import { ParticleSystem } from './particles';
 import { makeSprite } from './sprites';
@@ -154,14 +156,17 @@ interface View {
 export class IslandWorld {
   readonly root = new THREE.Group();
   private views = new Map<number, View>();
-  private scenery: IslandScenery;
+  readonly scenery: IslandScenery;
   readonly particles: ParticleSystem;
   readonly herd: DragonHerd;
+  private ambient: Ambient;
 
-  constructor(scene: THREE.Scene, particleCapacity = 600) {
+  constructor(scene: THREE.Scene, tier: Tier = 'high') {
     scene.add(this.root);
+    const density = QUALITY.density[tier];
     this.scenery = new IslandScenery(scene);
-    this.particles = new ParticleSystem(scene, particleCapacity);
+    this.particles = new ParticleSystem(scene, Math.round(600 * density));
+    this.ambient = new Ambient(scene, this.scenery, this.particles, density);
     this.herd = new DragonHerd(this.root, this.particles, {
       homeOf: (id) => {
         const v = this.views.get(id);
@@ -325,9 +330,11 @@ export class IslandWorld {
   }
 
   /** Gọi mỗi khung hình. */
-  update(state: GameState, now: number, dt: number, t: number, camera: THREE.Camera, night = false): void {
+  /** @param nightness 0 = ngày, 1 = đêm (từ DayNight) */
+  update(state: GameState, now: number, dt: number, t: number, camera: THREE.Camera, nightness = 0): void {
     this.scenery.update(dt, t);
-    this.herd.update(dt, t, camera, night);
+    this.ambient.update(dt, t, nightness);
+    this.herd.update(dt, t, camera, nightness > 0.5);
     this.particles.update(dt);
     const toCam = new THREE.Vector3();
     const right = new THREE.Vector3();
