@@ -41,6 +41,7 @@ const fragmentShader = /* glsl */ `
   uniform sampler2D map;
   uniform float uFlip, uFlash, uOpacity;
   uniform vec3 uLight;
+  uniform vec4 uGlow; // màu + cường độ tụ lực
   varying vec2 vUv;
   void main() {
     vec2 uv = vec2(uFlip > 0.5 ? 1.0 - vUv.x : vUv.x, vUv.y);
@@ -48,6 +49,7 @@ const fragmentShader = /* glsl */ `
     if (tex.a < 0.08) discard;
     vec3 rgb = tex.rgb * uLight;
     rgb = mix(rgb, vec3(1.0, 0.25, 0.2), uFlash * 0.55);
+    rgb += uGlow.rgb * uGlow.a;
     gl_FragColor = vec4(rgb, tex.a * uOpacity);
     #include <colorspace_fragment>
   }`;
@@ -85,6 +87,7 @@ export class DragonMesh extends THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMate
         uFlash: { value: 0 },
         uOpacity: { value: 1 },
         uLight: { value: sceneLight.clone() },
+        uGlow: { value: new THREE.Vector4(0, 0, 0, 0) },
         uBodyU: { value: meta.bodyU },
         uWingInner: { value: meta.wingInner },
         uWingTop: { value: meta.wingTop },
@@ -111,6 +114,11 @@ export class DragonMesh extends THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMate
 
   setFlapMode(mode: FlapMode): void {
     this.target = FLAP[mode];
+  }
+
+  /** Phát sáng theo màu color, cường độ k (0 = tắt) — dùng khi tụ lực. */
+  setGlow(color: THREE.Color, k: number): void {
+    this.u.uGlow.value.set(color.r, color.g, color.b, k);
   }
 
   setFlip(flip: boolean): void {

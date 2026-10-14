@@ -167,10 +167,12 @@ export class Panels {
         'div',
         { class: 'row card' },
         h('div', { class: 'grow' }, h('div', { class: 'big', 'data-hab-gold': id }), h('div', { class: 'muted' }, `+${fmtNum(habitatRate(this.s, hb))} vàng/phút`)),
-        h('button', { class: 'btn gold', onclick: () => {
+        h('button', {
+          class: 'btn gold', onclick: () => {
             const amount = Math.floor(habitatGold(this.s, hb, this.game.now()));
             if (this.game.act((s, now) => collectGold(s, hb, now), { sfx: 'coin' })) this.hooks.gain('gold', id, amount);
-          } }, '💰 Thu vàng'),
+          }
+        }, '💰 Thu vàng'),
         h('button', { class: 'btn ghost', onclick: () => { this.close(); this.hooks.move(id); } }, '⇄ Di chuyển'),
       ),
       h('h3', {}, `Rồng trong chuồng (${dragons.length}/${HABITAT_CAPACITY})`),
@@ -202,18 +204,18 @@ export class Panels {
           : h('button', { class: 'btn food', onclick: () => this.game.act((s, now) => feedDragon(s, d.id, now)) }, `🍖 Cho ăn (${cost})`),
         others.length
           ? h(
-              'select',
-              {
-                class: 'sel',
-                onchange: (e: Event) => {
-                  const v = Number((e.target as HTMLSelectElement).value);
-                  (e.target as HTMLSelectElement).blur();
-                  if (v) this.game.act((s, now) => moveDragon(s, d.id, v, now));
-                },
+            'select',
+            {
+              class: 'sel',
+              onchange: (e: Event) => {
+                const v = Number((e.target as HTMLSelectElement).value);
+                (e.target as HTMLSelectElement).blur();
+                if (v) this.game.act((s, now) => moveDragon(s, d.id, v, now));
               },
-              h('option', { value: '' }, 'Chuyển chuồng…'),
-              others.map((o) => h('option', { value: o.id }, habitatName(o))),
-            )
+            },
+            h('option', { value: '' }, 'Chuyển chuồng…'),
+            others.map((o) => h('option', { value: o.id }, habitatName(o))),
+          )
           : null,
       ),
     );
@@ -234,9 +236,11 @@ export class Panels {
           'div',
           { class: 'row' },
           done
-            ? h('button', { class: 'btn food', onclick: () => {
+            ? h('button', {
+              class: 'btn food', onclick: () => {
                 if (this.game.act((s, now) => harvest(s, id, now), { sfx: 'coin' })) this.hooks.gain('food', id, crop.food);
-              } }, '🧺 Thu hoạch')
+              }
+            }, '🧺 Thu hoạch')
             : this.speedBtn(farm.crop),
           move,
         ),
@@ -278,13 +282,13 @@ export class Panels {
           done
             ? homes.length
               ? h(
-                  'div',
-                  { class: 'row wrap' },
-                  h('span', { class: 'muted' }, 'Nở vào:'),
-                  homes.map((hb) =>
-                    h('button', { class: 'btn ok', onclick: () => this.game.act((s, t) => hatchEgg(s, e.id, hb.id, t), { sfx: 'hatch' }) }, `🐣 ${habitatName(hb)}`),
-                  ),
-                )
+                'div',
+                { class: 'row wrap' },
+                h('span', { class: 'muted' }, 'Nở vào:'),
+                homes.map((hb) =>
+                  h('button', { class: 'btn ok', onclick: () => this.game.act((s, t) => hatchEgg(s, e.id, hb.id, t), { sfx: 'hatch' }) }, `🐣 ${habitatName(hb)}`),
+                ),
+              )
               : h('div', { class: 'warn' }, `Cần chuồng hệ ${sp.elements.map((x) => ELEMENT_INFO[x].name).join(' hoặc ')} còn chỗ — hãy xây thêm trong 🏗️ Xây dựng`)
             : h('div', {}, timerBar(e.startedAt, e.durationMs), this.speedBtn(e)),
         );
